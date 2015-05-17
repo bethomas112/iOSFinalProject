@@ -7,17 +7,31 @@
 //
 
 import SpriteKit
+import Parse
 
 class GameScene: SKScene {
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
-        let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-        myLabel.text = "Hello, World!";
-        myLabel.fontSize = 65;
-        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
+//        let myLabel = SKLabelNode(fontNamed:"Chalkduster")
+//        myLabel.text = "Hello, World!";
+//        myLabel.fontSize = 65;
+//        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
+//        
+//        let testObject = PFObject(className: "TestObject")
+//        testObject["foo"] = "bar"
+//        testObject.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+//            println("Object has been saved.")
+//        }
+//        
+//        self.addChild(myLabel)
         
+        let gameOverAction = SKAction.runBlock() {
+            let reveal = SKTransition.flipHorizontalWithDuration(0.5);
+            let gameOverScene = GameOverScene(size: self.size, score: 0);
+            self.view?.presentScene(gameOverScene, transition: reveal);
+        }
         
-        self.addChild(myLabel)
+        runAction(gameOverAction);
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
