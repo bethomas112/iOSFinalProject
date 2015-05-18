@@ -7,39 +7,59 @@
 //
 
 import SpriteKit
+import CoreMotion
 
 class GameScene: SKScene {
+    let moveSpeed: CGFloat = 500.0
+    var ship = SKSpriteNode()
+    var motionManager = CMMotionManager()
+    var destX:CGFloat = 0.0
+    var destY:CGFloat = 0.0
+    
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
-        let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-        myLabel.text = "Hello, World!";
-        myLabel.fontSize = 65;
-        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
+        ship = SKSpriteNode(imageNamed:"Spaceship")
+        motionManager = CMMotionManager()
+        ship.xScale = 0.3
+        ship.yScale = 0.3
+        ship.position = CGPoint(x: frame.size.width/2, y: frame.size.height/2 - 250)
+        self.addChild(ship)
+        // motionManager.accelerometerUpdateInterval = NSTimeInterval(0.05)
         
-        self.addChild(myLabel)
+        if motionManager.accelerometerAvailable {
+            
+            motionManager.startAccelerometerUpdatesToQueue(NSOperationQueue.currentQueue(), withHandler:{
+                data, error in
+                
+                var currentX = self.ship.position.x
+                var currentY = self.ship.position.y
+                
+                // 3
+                if data.acceleration.x < -0.015 {
+                    self.destX = currentX + CGFloat(data.acceleration.x * 800)
+                }
+                    
+                else if data.acceleration.x > 0.015 {
+                    self.destX = currentX + CGFloat(data.acceleration.x * 800)
+                }
+                else {
+                    self.destX = currentX
+                }
+                
+            })
+        }
     }
+    
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         /* Called when a touch begins */
         
-        for touch in (touches as! Set<UITouch>) {
-            let location = touch.locationInNode(self)
-            
-            let sprite = SKSpriteNode(imageNamed:"Spaceship")
-            
-            sprite.xScale = 0.5
-            sprite.yScale = 0.5
-            sprite.position = location
-            
-            let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
-            
-            sprite.runAction(SKAction.repeatActionForever(action))
-            
-            self.addChild(sprite)
-        }
+        
     }
    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+        var action = SKAction.moveToX(destX, duration: NSTimeInterval(0.5))
+        ship.runAction(action)
     }
 }
