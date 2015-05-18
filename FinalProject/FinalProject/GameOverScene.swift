@@ -8,51 +8,54 @@
 
 import Foundation
 import SpriteKit
+import Parse
 
 class GameOverScene: SKScene {
     
-    init(size: CGSize, score:Int) {
-        
-        super.init(size: size)
-        
-//        let nodeSpacing = self.size.height / 15;
-        
-        backgroundColor = SKColor.blackColor();
-        
-//        let bgImage = SKSpriteNode(imageNamed: "game_over_background.jpg");
-//        bgImage.position = CGPointMake(self.size.width / 2, self.size.height / 2);
-//        addChild(bgImage);
-//        
-//        let scoreLabel = SKLabelNode(fontNamed: "DamascusSemiBold");
-//        scoreLabel.text = "Your score was " + String(score) + "!";
-//        scoreLabel.fontSize = 25;
-//        scoreLabel.fontColor = SKColor.blackColor();
-//        scoreLabel.position = CGPoint(x: size.width / 2, y: size.height - nodeSpacing * 2);
-//        addChild(scoreLabel);
-//        
-//        let playAgainLabel = SKLabelNode(fontNamed: "DamascusSemiBold");
-//        playAgainLabel.text = "Tap Screen To Play Again";
-//        playAgainLabel.fontSize = 20;
-//        playAgainLabel.fontColor = SKColor.greenColor();
-//        playAgainLabel.position = CGPoint(x: size.width / 2, y: size.height - nodeSpacing * 14);
-//        playAgainLabel.name = "restartButton";
-//        addChild(playAgainLabel);
+    var swapScene : (() -> Bool)?
+    
+    override func didMoveToView(view: SKView) {
+        initializeScene()
     }
     
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-//        super.touchesEnded(touches, withEvent: event);
-//        
-//        let restartGameAction = SKAction.runBlock() {
-//            let reveal = SKTransition.flipHorizontalWithDuration(0.5);
-//            let restartGameScene = GameScene(size: self.size);
-//            self.view?.presentScene(restartGameScene, transition: reveal);
+    func initializeScene() {
+        /* Setup your scene here */
+        
+        var gameScore = PFObject(className:"GameScore")
+        gameScore["score"] = 2
+        gameScore["playerName"] = "Bill Nye"
+        gameScore.saveInBackgroundWithBlock {
+            (success: Bool, error: NSError?) -> Void in
+            if (success) {
+                // The object has been saved.
+                println("The Object has been saved")
+            } else {
+                // There was a problem, check error.description
+                println("The Object could not be saved: " + error!.description)
+            }
+        }
+    }
+    
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        /* Called when a touch begins */
+//        for touch: AnyObject in touches {
+//            let location = (touch as! UITouch).locationInNode(self)
+//            if let theName = self.nodeAtPoint(location).name {
+//                if theName == "swapSceneButton" {
+//                    self.removeAllChildren()
+//                    if (!swapScene!()) {
+//                        initializeScene()
+//                    }
+//                    else {
+//                        
+//                    }
+//                }
+//            }
 //        }
-//        
-//        runAction(restartGameAction);
+        
     }
     
-    
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    override func update(currentTime: CFTimeInterval) {
+        /* Called before each frame is rendered */
     }
-}
+ }

@@ -86,6 +86,9 @@ class GameScene: SKScene {
                     if (!swapScene!()) {
                         initializeScene()
                     }
+                    else {
+                        
+                    }
                 }
             }
         }

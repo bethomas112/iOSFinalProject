@@ -57,14 +57,33 @@ class GameViewController: UIViewController {
         
     }
     
-    internal func switchToAccelerometerView() {
+    internal func switchToAccelerometerView() -> Bool {
         if let scene = accelerometerScene {
             skView!.presentScene(scene)
+            return true
         }
+        return false
     }
     
     internal func switchToParseView() -> Bool{
+        if let scene = GameOverScene.unarchiveFromFile("GameOverScene") as? GameOverScene {
+            // Configure the view.
+            
+            skView!.showsFPS = false
+            skView!.showsNodeCount = false
+            
+            /* Sprite Kit applies additional optimizations to improve rendering performance */
+            skView!.ignoresSiblingOrder = true
+            
+            /* Set the scale mode to scale to fit the window */
+            scene.scaleMode = .AspectFill
+            scene.swapScene = switchToAccelerometerView
+            gameOverScene = scene
+            
+        }
+        println("in switch to parse view")
         if let scene = gameOverScene {
+            println("game over scene exists")
             skView!.presentScene(scene)
             return true
         }
