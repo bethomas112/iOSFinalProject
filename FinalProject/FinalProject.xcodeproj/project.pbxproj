@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F01A21601B097961007DB416 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01A215E1B097961007DB416 /* Bolts.framework */; };
+		F01A21611B097961007DB416 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01A215F1B097961007DB416 /* Parse.framework */; };
+		F01A21631B0979F8007DB416 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01A21621B0979F8007DB416 /* AudioToolbox.framework */; };
+		F01A21651B0979FF007DB416 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01A21641B0979FF007DB416 /* CFNetwork.framework */; };
+		F01A21671B097A05007DB416 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01A21661B097A05007DB416 /* CoreGraphics.framework */; };
+		F01A21691B097A0D007DB416 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01A21681B097A0D007DB416 /* CoreLocation.framework */; };
+		F01A216B1B097A15007DB416 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01A216A1B097A15007DB416 /* MobileCoreServices.framework */; };
+		F01A216D1B097A1B007DB416 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01A216C1B097A1B007DB416 /* QuartzCore.framework */; };
+		F01A216F1B097A21007DB416 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01A216E1B097A21007DB416 /* Security.framework */; };
+		F01A21711B097A27007DB416 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01A21701B097A27007DB416 /* StoreKit.framework */; };
+		F01A21731B097A2F007DB416 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01A21721B097A2F007DB416 /* SystemConfiguration.framework */; };
+		F01A21751B097A38007DB416 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F01A21741B097A38007DB416 /* libz.dylib */; };
+		F01A21771B097A3F007DB416 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F01A21761B097A3F007DB416 /* libsqlite3.dylib */; };
+		F01A21791B0982D4007DB416 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01A21781B0982D4007DB416 /* GameOverScene.swift */; };
 		F03753491B03F96C00272763 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03753481B03F96C00272763 /* AppDelegate.swift */; };
 		F037534B1B03F96C00272763 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F037534A1B03F96C00272763 /* GameScene.sks */; };
 		F037534D1B03F96C00272763 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F037534C1B03F96C00272763 /* GameScene.swift */; };
@@ -28,6 +42,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F01A215E1B097961007DB416 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		F01A215F1B097961007DB416 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		F01A21621B0979F8007DB416 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		F01A21641B0979FF007DB416 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		F01A21661B097A05007DB416 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F01A21681B097A0D007DB416 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		F01A216A1B097A15007DB416 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		F01A216C1B097A1B007DB416 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		F01A216E1B097A21007DB416 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		F01A21701B097A27007DB416 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		F01A21721B097A2F007DB416 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		F01A21741B097A38007DB416 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		F01A21761B097A3F007DB416 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		F01A21781B0982D4007DB416 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		F03753431B03F96C00272763 /* FinalProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinalProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F03753471B03F96C00272763 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F03753481B03F96C00272763 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +75,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F01A21771B097A3F007DB416 /* libsqlite3.dylib in Frameworks */,
+				F01A21751B097A38007DB416 /* libz.dylib in Frameworks */,
+				F01A21731B097A2F007DB416 /* SystemConfiguration.framework in Frameworks */,
+				F01A21711B097A27007DB416 /* StoreKit.framework in Frameworks */,
+				F01A216F1B097A21007DB416 /* Security.framework in Frameworks */,
+				F01A216D1B097A1B007DB416 /* QuartzCore.framework in Frameworks */,
+				F01A216B1B097A15007DB416 /* MobileCoreServices.framework in Frameworks */,
+				F01A21691B097A0D007DB416 /* CoreLocation.framework in Frameworks */,
+				F01A21671B097A05007DB416 /* CoreGraphics.framework in Frameworks */,
+				F01A21651B0979FF007DB416 /* CFNetwork.framework in Frameworks */,
+				F01A21631B0979F8007DB416 /* AudioToolbox.framework in Frameworks */,
+				F01A21611B097961007DB416 /* Parse.framework in Frameworks */,
+				F01A21601B097961007DB416 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,9 +101,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F01A215D1B097917007DB416 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F01A215E1B097961007DB416 /* Bolts.framework */,
+				F01A215F1B097961007DB416 /* Parse.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F037533A1B03F96C00272763 = {
 			isa = PBXGroup;
 			children = (
+				F01A21761B097A3F007DB416 /* libsqlite3.dylib */,
+				F01A21741B097A38007DB416 /* libz.dylib */,
+				F01A21721B097A2F007DB416 /* SystemConfiguration.framework */,
+				F01A21701B097A27007DB416 /* StoreKit.framework */,
+				F01A216E1B097A21007DB416 /* Security.framework */,
+				F01A216C1B097A1B007DB416 /* QuartzCore.framework */,
+				F01A216A1B097A15007DB416 /* MobileCoreServices.framework */,
+				F01A21681B097A0D007DB416 /* CoreLocation.framework */,
+				F01A21661B097A05007DB416 /* CoreGraphics.framework */,
+				F01A21641B0979FF007DB416 /* CFNetwork.framework */,
+				F01A21621B0979F8007DB416 /* AudioToolbox.framework */,
 				F03753451B03F96C00272763 /* FinalProject */,
 				F037535F1B03F96C00272763 /* FinalProjectTests */,
 				F03753441B03F96C00272763 /* Products */,
@@ -81,7 +142,9 @@
 		F03753451B03F96C00272763 /* FinalProject */ = {
 			isa = PBXGroup;
 			children = (
+				F01A215D1B097917007DB416 /* Frameworks */,
 				F03753481B03F96C00272763 /* AppDelegate.swift */,
+				F01A21781B0982D4007DB416 /* GameOverScene.swift */,
 				F037534A1B03F96C00272763 /* GameScene.sks */,
 				F037534C1B03F96C00272763 /* GameScene.swift */,
 				F037534E1B03F96C00272763 /* GameViewController.swift */,
@@ -221,6 +284,7 @@
 			files = (
 				F037534D1B03F96C00272763 /* GameScene.swift in Sources */,
 				F037534F1B03F96C00272763 /* GameViewController.swift in Sources */,
+				F01A21791B0982D4007DB416 /* GameOverScene.swift in Sources */,
 				F03753491B03F96C00272763 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -348,6 +412,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FinalProject",
+				);
 				INFOPLIST_FILE = FinalProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -358,6 +426,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FinalProject",
+				);
 				INFOPLIST_FILE = FinalProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -417,6 +489,7 @@
 				F03753681B03F96C00272763 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F03753691B03F96C00272763 /* Build configuration list for PBXNativeTarget "FinalProjectTests" */ = {
 			isa = XCConfigurationList;
@@ -425,6 +498,7 @@
 				F037536B1B03F96C00272763 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

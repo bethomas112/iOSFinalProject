@@ -16,7 +16,7 @@ extension SKNode {
             var archiver = NSKeyedUnarchiver(forReadingWithData: sceneData)
             
             archiver.setClass(self.classForKeyedUnarchiver(), forClassName: "SKScene")
-            let scene = archiver.decodeObjectForKey(NSKeyedArchiveRootObjectKey) as! GameScene
+            let scene = archiver.decodeObjectForKey(NSKeyedArchiveRootObjectKey) as! SKScene
             archiver.finishDecoding()
             return scene
         } else {
@@ -27,22 +27,49 @@ extension SKNode {
 
 class GameViewController: UIViewController {
 
+    var gameOverScene: GameOverScene?
+    var accelerometerScene: GameScene?
+    var skView: SKView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        skView = self.view as? SKView
+        
         if let scene = GameScene.unarchiveFromFile("GameScene") as? GameScene {
             // Configure the view.
-            let skView = self.view as! SKView
-            skView.showsFPS = true
-            skView.showsNodeCount = true
+            
+            skView!.showsFPS = true
+            skView!.showsNodeCount = true
             
             /* Sprite Kit applies additional optimizations to improve rendering performance */
-            skView.ignoresSiblingOrder = true
+            skView!.ignoresSiblingOrder = true
             
             /* Set the scale mode to scale to fit the window */
             scene.scaleMode = .AspectFill
+            scene.swapScene = switchToParseView
+            accelerometerScene = scene
             
-            skView.presentScene(scene)
+        }
+        
+        /* Need to init GameOverScene() */
+        switchToAccelerometerView()
+        
+    }
+    
+    internal func switchToAccelerometerView() {
+        if let scene = accelerometerScene {
+            skView!.presentScene(scene)
+        }
+    }
+    
+    internal func switchToParseView() -> Bool{
+        if let scene = gameOverScene {
+            skView!.presentScene(scene)
+            return true
+        }
+        else {
+            return false
         }
     }
 
