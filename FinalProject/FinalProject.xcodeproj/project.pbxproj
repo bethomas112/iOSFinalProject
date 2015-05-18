@@ -20,6 +20,7 @@
 		F01A21731B097A2F007DB416 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01A21721B097A2F007DB416 /* SystemConfiguration.framework */; };
 		F01A21751B097A38007DB416 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F01A21741B097A38007DB416 /* libz.dylib */; };
 		F01A21771B097A3F007DB416 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F01A21761B097A3F007DB416 /* libsqlite3.dylib */; };
+		F01A21791B0982D4007DB416 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01A21781B0982D4007DB416 /* GameOverScene.swift */; };
 		F03753491B03F96C00272763 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03753481B03F96C00272763 /* AppDelegate.swift */; };
 		F037534B1B03F96C00272763 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F037534A1B03F96C00272763 /* GameScene.sks */; };
 		F037534D1B03F96C00272763 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F037534C1B03F96C00272763 /* GameScene.swift */; };
@@ -54,6 +55,7 @@
 		F01A21721B097A2F007DB416 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		F01A21741B097A38007DB416 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		F01A21761B097A3F007DB416 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		F01A21781B0982D4007DB416 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		F03753431B03F96C00272763 /* FinalProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinalProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F03753471B03F96C00272763 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F03753481B03F96C00272763 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 			children = (
 				F01A215D1B097917007DB416 /* Frameworks */,
 				F03753481B03F96C00272763 /* AppDelegate.swift */,
+				F01A21781B0982D4007DB416 /* GameOverScene.swift */,
 				F037534A1B03F96C00272763 /* GameScene.sks */,
 				F037534C1B03F96C00272763 /* GameScene.swift */,
 				F037534E1B03F96C00272763 /* GameViewController.swift */,
@@ -281,6 +284,7 @@
 			files = (
 				F037534D1B03F96C00272763 /* GameScene.swift in Sources */,
 				F037534F1B03F96C00272763 /* GameViewController.swift in Sources */,
+				F01A21791B0982D4007DB416 /* GameOverScene.swift in Sources */,
 				F03753491B03F96C00272763 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
