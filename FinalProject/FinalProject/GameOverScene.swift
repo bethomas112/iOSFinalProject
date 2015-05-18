@@ -16,13 +16,13 @@ class GameOverScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         view.frame.height
-        initializeScene(view.frame.height / 15)
+        initializeScene(view.frame.height / 15.0)
     }
     
     func initializeScene(nodeSpacing : CGFloat) {
         /* Setup your scene here */
         
-        let titleLabel = SKLabelNode(fontNamed: "DamascusSemiBold")
+        let titleLabel = SKLabelNode(fontNamed: "AppleSDGothicNeo-Regular")
         titleLabel.text = "High Scores: Parse Demo"
         titleLabel.fontSize = 30
         titleLabel.fontColor = SKColor.whiteColor()
@@ -39,6 +39,21 @@ class GameOverScene: SKScene {
                 println("Successfully retrieved \(objects!.count) scores.")
                 // Do something with the found objects
                 if let objects = objects as? [PFObject] {
+                    var spaceIncrement : CGFloat = 5;
+                    for (index, object) in enumerate(objects) {
+                        let name = object["playerName"] as! String
+                        let score = object["score"] as! Int
+                        let rank = index + 1;
+                        let scoreLabel = SKLabelNode(fontNamed: "AppleSDGothicNeo-Regular")
+                        scoreLabel.text = String(rank) + ".  " + name + " - score of " + String(score)
+                        scoreLabel.fontSize = 20
+                        scoreLabel.fontColor = SKColor.whiteColor()
+                        scoreLabel.position = CGPoint(x: self.size.width / 2, y: self.size.height - (nodeSpacing * spaceIncrement++))
+                        self.addChild(scoreLabel)
+                        
+                    }
+                    
+                    
                     for object in objects {
                         println(object)
                     }
