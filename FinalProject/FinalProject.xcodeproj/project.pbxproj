@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A6B43FC41B17985800DED168 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B43FC31B17985800DED168 /* background.png */; };
+		A6B43FC81B179D3900DED168 /* player_car.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B43FC71B179D3900DED168 /* player_car.png */; };
 		A6C206FF1B09A36500B32DCE /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C206FE1B09A36500B32DCE /* GameOverScene.swift */; };
 		A6C207031B09A65600B32DCE /* GameOverScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A6C207021B09A65600B32DCE /* GameOverScene.sks */; };
 		F01A21601B097961007DB416 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01A215E1B097961007DB416 /* Bolts.framework */; };
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		A6B43FC31B17985800DED168 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		A6B43FC71B179D3900DED168 /* player_car.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_car.png; sourceTree = "<group>"; };
 		A6C206FE1B09A36500B32DCE /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		A6C207021B09A65600B32DCE /* GameOverScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOverScene.sks; sourceTree = "<group>"; };
 		F01A215E1B097961007DB416 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				A6B43FC31B17985800DED168 /* background.png */,
+				A6B43FC71B179D3900DED168 /* player_car.png */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 			files = (
 				F03753571B03F96C00272763 /* LaunchScreen.xib in Resources */,
 				A6B43FC41B17985800DED168 /* background.png in Resources */,
+				A6B43FC81B179D3900DED168 /* player_car.png in Resources */,
 				F03753541B03F96C00272763 /* Images.xcassets in Resources */,
 				F037534B1B03F96C00272763 /* GameScene.sks in Resources */,
 				A6C207031B09A65600B32DCE /* GameOverScene.sks in Resources */,
