@@ -29,6 +29,7 @@ class GameViewController: UIViewController {
 
     var gameOverScene: GameOverScene?
     var accelerometerScene: GameScene?
+    var scoreScene: ScoreScene?
     var skView: SKView?
     
     override func viewDidLoad() {
@@ -52,9 +53,27 @@ class GameViewController: UIViewController {
             
         }
         
+        if let scene = ScoreScene.unarchiveFromFile("ScoreScene") as? ScoreScene {
+            skView!.ignoresSiblingOrder = true
+            scene.scaleMode = .AspectFill
+            
+            scoreScene = scene
+        }
+        
         /* Need to init GameOverScene() */
         switchToAccelerometerView()
+        //switchtoScoreView(100)
+        //switchToParseView()
         
+    }
+    
+    internal func switchtoScoreView(score: Int) -> Bool {
+        if let scene = scoreScene {
+            scene.playerScore = score
+            skView!.presentScene(scene)
+            return true
+        }
+        return false
     }
     
     internal func switchToAccelerometerView() -> Bool {
