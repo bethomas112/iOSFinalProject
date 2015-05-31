@@ -35,6 +35,7 @@
 		F0BC2B431B19183C0053CABA /* ScoreScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F0BC2B421B19183C0053CABA /* ScoreScene.sks */; };
 		F0BC2B451B19187C0053CABA /* ScoreScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BC2B441B19187C0053CABA /* ScoreScene.swift */; };
 		F0BC2B471B191A960053CABA /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BC2B461B191A960053CABA /* Button.swift */; };
+		F0BC2B491B1A90950053CABA /* ScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BC2B481B1A90950053CABA /* ScoreManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		F0BC2B421B19183C0053CABA /* ScoreScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ScoreScene.sks; sourceTree = "<group>"; };
 		F0BC2B441B19187C0053CABA /* ScoreScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreScene.swift; sourceTree = "<group>"; };
 		F0BC2B461B191A960053CABA /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		F0BC2B481B1A90950053CABA /* ScoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,11 +169,12 @@
 				F01A215D1B097917007DB416 /* Frameworks */,
 				F03753481B03F96C00272763 /* AppDelegate.swift */,
 				F037534A1B03F96C00272763 /* GameScene.sks */,
-				F0BC2B461B191A960053CABA /* Button.swift */,
 				A6C207021B09A65600B32DCE /* GameOverScene.sks */,
 				F0BC2B421B19183C0053CABA /* ScoreScene.sks */,
 				F0BC2B441B19187C0053CABA /* ScoreScene.swift */,
 				F037534C1B03F96C00272763 /* GameScene.swift */,
+				F0BC2B461B191A960053CABA /* Button.swift */,
+				F0BC2B481B1A90950053CABA /* ScoreManager.swift */,
 				A6C206FE1B09A36500B32DCE /* GameOverScene.swift */,
 				F037534E1B03F96C00272763 /* GameViewController.swift */,
 				F03753501B03F96C00272763 /* Main.storyboard */,
@@ -318,6 +321,7 @@
 				A6C206FF1B09A36500B32DCE /* GameOverScene.swift in Sources */,
 				F03753491B03F96C00272763 /* AppDelegate.swift in Sources */,
 				F0BC2B451B19187C0053CABA /* ScoreScene.swift in Sources */,
+				F0BC2B491B1A90950053CABA /* ScoreManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

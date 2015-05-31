@@ -62,7 +62,7 @@ class GameViewController: UIViewController {
         
         /* Need to init GameOverScene() */
         switchToAccelerometerView()
-        //switchtoScoreView(100)
+        //switchtoScoreView(1)
         //switchToParseView()
         
     }

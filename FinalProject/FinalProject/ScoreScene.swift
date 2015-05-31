@@ -12,11 +12,18 @@ class ScoreScene: SKScene {
     /* Has the scene been initialized */
     private var initialized: Bool = false
     
+    var scoreManager : ScoreManager = ScoreManager()
+    
     /* The most recent player score */
     var playerScore: Int = 0
     
     /* Text Field to enter players name */
     var playerNameField: UITextField?
+    
+    /* The buttons */
+    var submitButton = Button(rectSize: CGSize(width: 200, height: 40))
+    var restartButton = Button(rectSize: CGSize(width: 200, height: 40))
+    var highScoreButton = Button(rectSize: CGSize(width: 200, height: 40))
     
     override func didMoveToView(view: SKView) {
         if (!initialized) {
@@ -38,10 +45,49 @@ class ScoreScene: SKScene {
         textField.clearButtonMode = UITextFieldViewMode.WhileEditing
         playerNameField = textField
         self.view?.addSubview(playerNameField!)
+        if (scoreManager.playerUserName != "") {
+            textField.text = scoreManager.playerUserName
+        }
+    }
+    
+    func submitPlayerInfo(userName : String) {
+        scoreManager.updatePlayerScore(userName, score: playerScore)
+    }
+    
+    func submitButtonHandeler() {
+        if let userText = playerNameField?.text {
+            if (userText != "") {
+                print("User text is \(userText)")
+                submitButton.removeFromParent()
+                self.addChild(restartButton)
+                self.addChild(highScoreButton)
+                playerNameField!.removeFromSuperview()
+                submitPlayerInfo(userText)
+            }
+        }
+    }
+    
+    func restartButtonHandeler() {
+        
+    }
+    
+    func highScoreButtonHandeler() {
+        
     }
     
     func initButtons() {
+        submitButton.pressCallBack = submitButtonHandeler
+        submitButton.text = "Submit Score"
+        submitButton.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame))
         
+        restartButton.pressCallBack = restartButtonHandeler
+        restartButton.text = "Restart"
+        restartButton.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame))
+        
+        highScoreButton.pressCallBack = highScoreButtonHandeler
+        highScoreButton.text = "High Scores"
+        highScoreButton.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame) + 70)
+        self.addChild(submitButton)
     }
     
     func initScene() {
