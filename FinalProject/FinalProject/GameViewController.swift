@@ -58,6 +58,7 @@ class GameViewController: UIViewController {
             skView!.ignoresSiblingOrder = true
             scene.scaleMode = .AspectFill
             scene.switchToHighScores = switchToHighScoreView
+            scene.restartGame = switchToAccelerometerView
             scoreScene = scene
         }
         

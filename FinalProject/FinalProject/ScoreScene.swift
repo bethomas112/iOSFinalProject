@@ -97,8 +97,7 @@ class ScoreScene: SKScene {
     }
     
     func restartButtonHandeler() {
-        //Temp test reloading the scene
-        reloadScene()
+        restartGame!()
     }
     
     func highScoreButtonHandeler() {
