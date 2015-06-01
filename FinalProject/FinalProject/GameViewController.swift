@@ -30,6 +30,7 @@ class GameViewController: UIViewController {
     var gameOverScene: GameOverScene?
     var accelerometerScene: GameScene?
     var scoreScene: ScoreScene?
+    var highScoreScene = HighScoreScene()
     var skView: SKView?
     
     override func viewDidLoad() {
@@ -56,13 +57,16 @@ class GameViewController: UIViewController {
         if let scene = ScoreScene.unarchiveFromFile("ScoreScene") as? ScoreScene {
             skView!.ignoresSiblingOrder = true
             scene.scaleMode = .AspectFill
-            
+            scene.switchToHighScores = switchToHighScoreView
             scoreScene = scene
         }
         
-        /* Need to init GameOverScene() */
+        highScoreScene.scaleMode = .AspectFill
+        highScoreScene.restartGame = switchToAccelerometerView
+        
         switchToAccelerometerView()
-        //switchtoScoreView(1)
+        //switchtoScoreView(15)
+        //switchToHighScoreView()
         //switchToParseView()
         
     }
@@ -76,6 +80,11 @@ class GameViewController: UIViewController {
         return false
     }
     
+    internal func switchToHighScoreView() -> Bool {
+        skView!.presentScene(highScoreScene)
+        return true
+    }
+    
     internal func switchToAccelerometerView() -> Bool {
         if let scene = accelerometerScene {
             skView!.presentScene(scene)
@@ -85,7 +94,10 @@ class GameViewController: UIViewController {
     }
     
     internal func switchToParseView() -> Bool{
-        if let scene = GameOverScene.unarchiveFromFile("GameOverScene") as? GameOverScene {
+        
+        return switchtoScoreView(15)
+        
+        /*if let scene = GameOverScene.unarchiveFromFile("GameOverScene") as? GameOverScene {
             // Configure the view.
             
             skView!.showsFPS = false
@@ -108,7 +120,7 @@ class GameViewController: UIViewController {
         }
         else {
             return false
-        }
+        }*/
     }
 
     override func shouldAutorotate() -> Bool {

@@ -18,14 +18,96 @@ class ScoreManager {
     init() {
         loadLocalObjectID()
         
-        println(playerUserName)
-        println(parseObjectID)
-        println(playerScore)
     }
     
+    func getTopScores() -> [String] {
+        var query = PFQuery(className: "GameScore")
+        query.orderByDescending("score")
+        query.limit = 3
+        let scores = query.findObjects()
+        
+        var topScores : [String] = []
+        
+        if let objects = scores as? [PFObject] {
+            for (idx, object) in enumerate(objects) {
+                var playerName = object["playerName"] as! String
+                var score = object["score"] as! Int
+                if (object.objectId == parseObjectID) {
+                    topScores.append("->\(idx + 1). \(playerName) : \(score)")
+                }
+                else {
+                    topScores.append("\(idx + 1). \(playerName) : \(score)")
+                }
+            }
+        }
+        return topScores
+    }
+    
+    func calculateSkip() -> Int {
+        var rank = getPlayerRank()
+        
+        if (rank - 3) < 0 {
+            return 0
+        }
+        else {
+            return rank - 3
+        }
+    }
+    
+    func getSurroundingScores() -> [String] {
+        var query = PFQuery(className: "GameScore")
+        query.orderByDescending("score")
+        query.limit = 5
+        query.skip = calculateSkip()
+        var surroundingScores : [String] = []
+        
+        let scores = query.findObjects()
+        
+        if let objects = scores as? [PFObject] {
+            for (idx, object) in enumerate(objects) {
+                var name = object["playerName"] as! String
+                var score = object["score"] as! Int
+                var place = query.skip + idx + 1
+                if (object.objectId == parseObjectID) {
+                    surroundingScores.append("->\(place). \(name) : \(score)")
+                }
+                else {
+                    surroundingScores.append("\(place). \(name) : \(score)")
+                }
+                
+            }
+        }
+        return surroundingScores
+    }
+    
+    func getPlayerRank() -> Int {
+        var query = PFQuery(className: "GameScore")
+        query.orderByDescending("score")
+        let scores = query.findObjects()
+        
+        if let objects = scores as? [PFObject] {
+            for (idx, object) in enumerate(objects) {
+                if (object.objectId == parseObjectID) {
+                    return idx + 1
+                }
+            }
+        }
+        return -1
+    }
+    
+    func getNumScores() -> Int {
+        var query = PFQuery(className: "GameScore")
+        return query.countObjects()
+    }
+    
+    func getPlayerRankString() -> String {
+        var totalScores = getNumScores()
+        var playerRank = getPlayerRank()
+        return "\(playerRank) out of \(totalScores)"
+    }
     
     func updatePlayerScore(userName: String, score: Int) {
-        if (userName != playerUserName) {
+        if (parseObjectID == "") {
             let gameScore = PFObject(className: "GameScore")
             gameScore["score"] = score
             gameScore["playerName"] = userName
@@ -43,7 +125,6 @@ class ScoreManager {
             }
         }
         else if (score > playerScore) {
-            println("Should be in here ")
             var query = PFQuery(className: "GameScore")
             query.getObjectInBackgroundWithId(parseObjectID) {
                 [unowned self]
@@ -51,6 +132,10 @@ class ScoreManager {
                 if error != nil {
                     println(error)
                 } else if let gameScore = gameScore {
+                    if (userName != self.playerUserName) {
+                        self.playerUserName = userName
+                        gameScore["playerName"] = self.playerUserName
+                    }
                     gameScore["score"] = score
                     gameScore.saveInBackground()
                     self.playerScore = score
@@ -58,8 +143,23 @@ class ScoreManager {
                 }
             }
         }
+        else if (userName != playerUserName) {
+            var query = PFQuery(className: "GameScore")
+            query.getObjectInBackgroundWithId(parseObjectID) {
+                [unowned self]
+                (gameScore: PFObject?, error: NSError?) -> Void in
+                if error != nil {
+                    println(error)
+                } else if let gameScore = gameScore {
+                    self.playerUserName = userName
+                    gameScore["playerName"] = self.playerUserName
+                    gameScore.saveInBackground()
+                    self.playerScore = score
+                    self.storeLocalObjectID()
+                }
+            }
+        }
     }
-    
     
     private func loadLocalObjectID() {
         if let userObjectID = def.valueForKey("UserObjectID") as? String {
