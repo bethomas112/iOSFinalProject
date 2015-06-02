@@ -9,22 +9,27 @@
 import SpriteKit
 import CoreMotion
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     /*Accerometer Movement*/
     let moveSpeed: CGFloat = 500.0
-    var ship = SKSpriteNode()
+    var player = SKSpriteNode()
     var motionManager = CMMotionManager()
     var destX:CGFloat = 0.0
     var destY:CGFloat = 0.0
     
     /*Background*/
-    var background: SKNode!;
-    let background_speed = 100.0;
+    var background: SKNode!
+    let background_speed = 100.0
     
     /*Time Values*/
-    var delta = NSTimeInterval(0);
-    var last_update_time = NSTimeInterval(0);
+    var delta = NSTimeInterval(0)
+    var last_update_time = NSTimeInterval(0)
+    
+    /*Physics categories*/
+    let FSBoundaryCategory: UInt32 = 1 << 0
+    let FSPlayerCategory: UInt32 = 1 << 1
+    let FSObstacleCategory: UInt32 = 1 << 2
     
     var swapScene : (() -> Bool)?
     
@@ -33,9 +38,17 @@ class GameScene: SKScene {
     }
     
     func initializeScene() {
+        initWorld()
         initBackground()
         initCar()
         initButtons()
+    }
+    
+    func initWorld() {
+        physicsWorld.contactDelegate = self;
+        physicsBody = SKPhysicsBody(edgeLoopFromRect: CGRect(x: 40.0, y: 10.0, width: self.frame.width - 80.0, height: 220.0));
+        physicsBody?.categoryBitMask = FSBoundaryCategory;
+        physicsBody?.collisionBitMask = FSPlayerCategory;
     }
     
     func initBackground() {
@@ -45,7 +58,7 @@ class GameScene: SKScene {
         for i in 0...2 {
             let tile = SKSpriteNode(imageNamed: "background");
             tile.anchorPoint = CGPointZero
-            tile.position = CGPoint(x: 0.0, y: CGFloat(i) * 568)
+            tile.position = CGPoint(x: 0.0, y: CGFloat(i) * tile.size.height)
             tile.name = "bg"
             tile.zPosition = 1
             background.addChild(tile)
@@ -70,13 +83,20 @@ class GameScene: SKScene {
     }
         
     func initCar() {
-        ship = SKSpriteNode(imageNamed:"player_car")
+        player = SKSpriteNode(imageNamed:"player_car")
         motionManager = CMMotionManager()
-        ship.xScale = 0.3
-        ship.yScale = 0.3
-        ship.zPosition = 4
-        ship.position = CGPoint(x: frame.size.width/2, y: frame.size.height/2 - 275)
-        self.addChild(ship)
+        player.xScale = 0.3
+        player.yScale = 0.3
+        player.physicsBody = SKPhysicsBody(rectangleOfSize: player.size)
+        player.physicsBody?.categoryBitMask = FSPlayerCategory
+        player.physicsBody?.contactTestBitMask = FSObstacleCategory | FSBoundaryCategory
+        player.physicsBody?.collisionBitMask = FSObstacleCategory | FSBoundaryCategory
+        player.physicsBody?.affectedByGravity = false;
+        player.physicsBody?.allowsRotation = false;
+        player.physicsBody?.restitution = 0.2
+        player.zPosition = 4
+        player.position = CGPoint(x: frame.size.width/2, y: frame.size.height/2 - 275)
+        self.addChild(player)
         // motionManager.accelerometerUpdateInterval = NSTimeInterval(0.05)
         
         if motionManager.accelerometerAvailable {
@@ -84,8 +104,8 @@ class GameScene: SKScene {
             motionManager.startAccelerometerUpdatesToQueue(NSOperationQueue.currentQueue(), withHandler:{
                 data, error in
                 
-                var currentX = self.ship.position.x
-                var currentY = self.ship.position.y
+                var currentX = self.player.position.x
+                var currentY = self.player.position.y
                 
                 // 3
                 if data.acceleration.x < -0.015 {
@@ -152,6 +172,6 @@ class GameScene: SKScene {
         moveBackground()
         
         var action = SKAction.moveToX(destX, duration: NSTimeInterval(0.5))
-        ship.runAction(action)
+        player.runAction(action)
     }
 }
