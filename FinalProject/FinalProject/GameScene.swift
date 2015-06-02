@@ -33,9 +33,9 @@ class GameScene: SKScene {
     }
     
     func initializeScene() {
-        initBackground()
         initCar()
         initButtons()
+        initBackground()
     }
     
     func initBackground() {
@@ -47,6 +47,7 @@ class GameScene: SKScene {
             tile.anchorPoint = CGPointZero
             tile.position = CGPoint(x: 0.0, y: CGFloat(i) * 568)
             tile.name = "bg"
+            tile.size.width = self.size.width
             tile.zPosition = 1
             background.addChild(tile)
         }
