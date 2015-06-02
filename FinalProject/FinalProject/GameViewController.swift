@@ -29,6 +29,8 @@ class GameViewController: UIViewController {
 
     var gameOverScene: GameOverScene?
     var accelerometerScene: GameScene?
+    var scoreScene: ScoreScene?
+    var highScoreScene = HighScoreScene()
     var skView: SKView?
     
     override func viewDidLoad() {
@@ -53,9 +55,36 @@ class GameViewController: UIViewController {
             
         }
         
-        /* Need to init GameOverScene() */
-        switchToAccelerometerView()
+        if let scene = ScoreScene.unarchiveFromFile("ScoreScene") as? ScoreScene {
+            skView!.ignoresSiblingOrder = true
+            scene.scaleMode = .AspectFill
+            scene.switchToHighScores = switchToHighScoreView
+            scene.restartGame = switchToAccelerometerView
+            scoreScene = scene
+        }
         
+        highScoreScene.scaleMode = .AspectFill
+        highScoreScene.restartGame = switchToAccelerometerView
+        
+        switchToAccelerometerView()
+        //switchtoScoreView(15)
+        //switchToHighScoreView()
+        //switchToParseView()
+        
+    }
+    
+    internal func switchtoScoreView(score: Int) -> Bool {
+        if let scene = scoreScene {
+            scene.playerScore = score
+            skView!.presentScene(scene)
+            return true
+        }
+        return false
+    }
+    
+    internal func switchToHighScoreView() -> Bool {
+        skView!.presentScene(highScoreScene)
+        return true
     }
     
     internal func switchToAccelerometerView() -> Bool {
@@ -67,7 +96,10 @@ class GameViewController: UIViewController {
     }
     
     internal func switchToParseView() -> Bool{
-        if let scene = GameOverScene.unarchiveFromFile("GameOverScene") as? GameOverScene {
+        
+        return switchtoScoreView(15)
+        
+        /*if let scene = GameOverScene.unarchiveFromFile("GameOverScene") as? GameOverScene {
             // Configure the view.
             
             skView!.showsFPS = false
@@ -90,7 +122,7 @@ class GameViewController: UIViewController {
         }
         else {
             return false
-        }
+        }*/
     }
 
     override func shouldAutorotate() -> Bool {
