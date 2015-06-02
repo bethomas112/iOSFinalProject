@@ -38,10 +38,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func initializeScene() {
-        initWorld()
-        initBackground()
         initCar()
         initButtons()
+        initBackground()
     }
     
     func initWorld() {
@@ -60,6 +59,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             tile.anchorPoint = CGPointZero
             tile.position = CGPoint(x: 0.0, y: CGFloat(i) * tile.size.height)
             tile.name = "bg"
+            tile.size.width = self.size.width
             tile.zPosition = 1
             background.addChild(tile)
         }
