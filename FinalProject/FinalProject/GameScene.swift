@@ -54,7 +54,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         background = SKNode();
         addChild(background);
         
-        for i in 0...2 {
+        for i in 0...3 {
             let tile = SKSpriteNode(imageNamed: "background");
             tile.anchorPoint = CGPointZero
             tile.position = CGPoint(x: 0.0, y: CGFloat(i) * tile.size.height)
@@ -72,11 +72,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         background.enumerateChildNodesWithName("bg") { (node, stop) in
             let background_screen_position = self.background.convertPoint(node.position, toNode: self);
             
-            let difference = self.frame.height - node.frame.size.height
-            
             if background_screen_position.y <= -node.frame.size.height {
-//            if background_screen_position.y <= -node.frame.size.height + difference {
-                node.position = CGPoint(x: node.position.x, y: node.position.y + (node.frame.size.height * 2));
+                node.position = CGPoint(x: node.position.x, y: node.position.y + (node.frame.size.height * 3));
+
             }
             
         }
