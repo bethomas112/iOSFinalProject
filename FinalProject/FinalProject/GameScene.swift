@@ -58,7 +58,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         physicsWorld.contactDelegate = self
         
-        self.physicsBody = SKPhysicsBody(edgeLoopFromRect: CGRect(x: wallWidth, y: 0.0, width: self.size.width - (self.size.width / 6.0), height: self.size.height))
+        /*Physics body goes above and below screen so obstacles can start above the screen and end below the screen*/
+        self.physicsBody = SKPhysicsBody(edgeLoopFromRect: CGRect(x: wallWidth, y: -150.0, width: self.size.width - (self.size.width / 6.0), height: self.size.height + 300.0))
         self.physicsBody?.friction = 0.0
         self.physicsBody?.categoryBitMask = FSBoundaryCategory
         self.physicsBody?.collisionBitMask = FSPlayerCategory | FSObstacleCategory
@@ -153,7 +154,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func addObstacle(fileName: String) {
         let obstacle = SKSpriteNode(imageNamed: fileName)
-        obstacle.position = CGPoint(x: skRand(lowerBound: self.size.width / 12.0, upperBound: self.size.width - (self.size.width / 12.0)), y: self.size.height)
+        obstacle.position = CGPoint(x: skRand(lowerBound: self.size.width / 12.0, upperBound: self.size.width - (self.size.width / 12.0)), y: self.size.height + obstacle.size.height)
         obstacle.name = "obstacle"
         obstacle.zPosition = 4
         
@@ -211,9 +212,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func didBeginContact(contact: SKPhysicsContact) {
         let collision: UInt32 = (contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask);
         
-//        if(collision == (FSPlayerCategory | FSBoundaryCategory)) {
-//            player.position.x = player.position.x
-//        }
+        if(collision == (FSObstacleCategory | FSBoundaryCategory)) {
+            if contact.bodyA.node?.name == "obstacle" {
+                contact.bodyA.node?.removeFromParent()
+                println("obstacle removed")
+            }
+            if contact.bodyB.node?.name == "obstacle" {
+                contact.bodyB.node?.removeFromParent()
+                println("obstacle removed")
+            }
+        }
     }
    
     override func update(currentTime: CFTimeInterval) {
