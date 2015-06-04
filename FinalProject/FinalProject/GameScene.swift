@@ -41,13 +41,34 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         initCar()
         initButtons()
         initBackground()
+        initWorld()
     }
     
     func initWorld() {
-        physicsWorld.contactDelegate = self;
-        physicsBody = SKPhysicsBody(edgeLoopFromRect: CGRect(x: 40.0, y: 10.0, width: self.frame.width - 80.0, height: 220.0));
-        physicsBody?.categoryBitMask = FSBoundaryCategory;
-        physicsBody?.collisionBitMask = FSPlayerCategory;
+        let wallWidth : CGFloat = self.size.width / 12.0
+        
+//        let leftWall : SKSpriteNode = SKSpriteNode()
+//        leftWall.physicsBody = SKPhysicsBody(edgeLoopFromRect: CGRect(x: 0.0, y: 0.0, width: wallWidth, height: self.frame.height))
+//        leftWall.physicsBody?.categoryBitMask = FSBoundaryCategory
+//        leftWall.physicsBody?.collisionBitMask = FSPlayerCategory | FSObstacleCategory
+//        leftWall.physicsBody?.contactTestBitMask = FSPlayerCategory | FSObstacleCategory
+//        leftWall.position = CGPointZero
+//        
+//        self.addChild(leftWall)
+//        
+//        let rightWall : SKSpriteNode = SKSpriteNode()
+//        rightWall.physicsBody = SKPhysicsBody(edgeLoopFromRect: CGRect(x: self.size.width - wallWidth, y: 0.0, width: wallWidth, height: self.frame.height))
+//        rightWall.physicsBody?.categoryBitMask = FSBoundaryCategory
+//        rightWall.physicsBody?.collisionBitMask = FSPlayerCategory | FSObstacleCategory
+//        rightWall.physicsBody?.contactTestBitMask = FSPlayerCategory | FSObstacleCategory
+//        rightWall.position = CGPointZero
+//        
+//        self.addChild(rightWall)
+        
+        self.physicsBody = SKPhysicsBody(edgeLoopFromRect: CGRect(x: wallWidth, y: 0.0, width: self.size.width - (self.size.width / 6.0), height: self.size.height))
+        self.physicsBody?.categoryBitMask = FSBoundaryCategory
+        self.physicsBody?.collisionBitMask = FSPlayerCategory | FSObstacleCategory
+        self.physicsBody?.contactTestBitMask = FSPlayerCategory | FSObstacleCategory
     }
     
     func initBackground() {
@@ -74,7 +95,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if background_screen_position.y <= -node.frame.size.height {
                 node.position = CGPoint(x: node.position.x, y: node.position.y + (node.frame.size.height * 3));
-
             }
             
         }
@@ -87,11 +107,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.yScale = 0.3
         player.physicsBody = SKPhysicsBody(rectangleOfSize: player.size)
         player.physicsBody?.categoryBitMask = FSPlayerCategory
-        player.physicsBody?.contactTestBitMask = FSObstacleCategory | FSBoundaryCategory
-        player.physicsBody?.collisionBitMask = FSObstacleCategory | FSBoundaryCategory
+        player.physicsBody?.contactTestBitMask = FSBoundaryCategory | FSObstacleCategory
+        player.physicsBody?.collisionBitMask = FSBoundaryCategory | FSObstacleCategory
         player.physicsBody?.affectedByGravity = false;
         player.physicsBody?.allowsRotation = false;
-        player.physicsBody?.restitution = 0.2
+        player.physicsBody?.restitution = 0.9
+        player.physicsBody?.affectedByGravity = false
+        player.physicsBody?.dynamic = true
         player.zPosition = 4
         player.position = CGPoint(x: frame.size.width/2, y: frame.size.height/2 - 275)
         self.addChild(player)
