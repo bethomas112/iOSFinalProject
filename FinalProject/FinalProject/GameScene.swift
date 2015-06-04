@@ -108,7 +108,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         motionManager = CMMotionManager()
         player.xScale = 0.3
         player.yScale = 0.3
-        player.physicsBody = SKPhysicsBody(rectangleOfSize: player.size)
+//        player.physicsBody = SKPhysicsBody(rectangleOfSize: player.size)
+        player.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: player.size.width * 0.5, height: player.size.height))
         player.physicsBody?.categoryBitMask = FSPlayerCategory
         player.physicsBody?.contactTestBitMask = FSBoundaryCategory | FSObstacleCategory
         player.physicsBody?.collisionBitMask = FSBoundaryCategory | FSObstacleCategory
@@ -118,7 +119,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.physicsBody?.affectedByGravity = false
         player.physicsBody?.dynamic = true
         player.zPosition = 4
-        player.position = CGPoint(x: frame.size.width/2, y: frame.size.height/2 - 275)
+        player.position = CGPoint(x: frame.size.width / 2, y: frame.size.height / 6)
         self.destX = player.position.x
         
         self.addChild(player)
