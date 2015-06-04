@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A61A8D361B20FA3C00740E08 /* obstacle1.png in Resources */ = {isa = PBXBuildFile; fileRef = A61A8D351B20FA3C00740E08 /* obstacle1.png */; };
 		A6B43FC81B179D3900DED168 /* player_car.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B43FC71B179D3900DED168 /* player_car.png */; };
 		A6C206FF1B09A36500B32DCE /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C206FE1B09A36500B32DCE /* GameOverScene.swift */; };
 		A6C207031B09A65600B32DCE /* GameOverScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A6C207021B09A65600B32DCE /* GameOverScene.sks */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A61A8D351B20FA3C00740E08 /* obstacle1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = obstacle1.png; sourceTree = "<group>"; };
 		A6B43FC71B179D3900DED168 /* player_car.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_car.png; sourceTree = "<group>"; };
 		A6C206FE1B09A36500B32DCE /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		A6C207021B09A65600B32DCE /* GameOverScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOverScene.sks; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 		A6B43FBA1B17902800DED168 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				A61A8D351B20FA3C00740E08 /* obstacle1.png */,
 				A6B43FC71B179D3900DED168 /* player_car.png */,
 			);
 			name = images;
@@ -296,6 +299,7 @@
 				F037534B1B03F96C00272763 /* GameScene.sks in Resources */,
 				A6C207031B09A65600B32DCE /* GameOverScene.sks in Resources */,
 				F03753521B03F96C00272763 /* Main.storyboard in Resources */,
+				A61A8D361B20FA3C00740E08 /* obstacle1.png in Resources */,
 				F0BC2B431B19183C0053CABA /* ScoreScene.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
