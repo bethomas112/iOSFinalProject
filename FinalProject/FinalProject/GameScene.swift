@@ -20,7 +20,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     /*Background*/
     var background: SKNode!
-    let background_speed = 100.0
+    let background_speed = 250.0
     
     /*Time Values*/
     var delta = NSTimeInterval(0)
@@ -47,6 +47,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func initWorld() {
         let wallWidth : CGFloat = self.size.width / 12.0
         
+        physicsWorld.contactDelegate = self
+        
 //        let leftWall : SKSpriteNode = SKSpriteNode()
 //        leftWall.physicsBody = SKPhysicsBody(edgeLoopFromRect: CGRect(x: 0.0, y: 0.0, width: wallWidth, height: self.frame.height))
 //        leftWall.physicsBody?.categoryBitMask = FSBoundaryCategory
@@ -66,6 +68,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //        self.addChild(rightWall)
         
         self.physicsBody = SKPhysicsBody(edgeLoopFromRect: CGRect(x: wallWidth, y: 0.0, width: self.size.width - (self.size.width / 6.0), height: self.size.height))
+        self.physicsBody?.friction = 0.0
         self.physicsBody?.categoryBitMask = FSBoundaryCategory
         self.physicsBody?.collisionBitMask = FSPlayerCategory | FSObstacleCategory
         self.physicsBody?.contactTestBitMask = FSPlayerCategory | FSObstacleCategory
@@ -116,6 +119,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.physicsBody?.dynamic = true
         player.zPosition = 4
         player.position = CGPoint(x: frame.size.width/2, y: frame.size.height/2 - 275)
+        self.destX = player.position.x
+        
         self.addChild(player)
         // motionManager.accelerometerUpdateInterval = NSTimeInterval(0.05)
         
@@ -183,6 +188,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
     }
+    
+    func didBeginContact(contact: SKPhysicsContact) {
+        let collision: UInt32 = (contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask);
+        
+//        if(collision == (FSPlayerCategory | FSBoundaryCategory)) {
+//            player.position.x = player.position.x
+//        }
+    }
    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
@@ -191,7 +204,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         moveBackground()
         
-        var action = SKAction.moveToX(destX, duration: NSTimeInterval(0.5))
+        if (destX > self.size.width - (self.size.width / 12.0)) {
+            destX = self.size.width - (self.size.width / 12.0)
+        }
+        if (destX < self.size.width / 12.0) {
+            destX = self.size.width / 12.0
+        }
+        
+        var action = SKAction.moveToX(destX, duration: NSTimeInterval(0.1))
         player.runAction(action)
     }
 }
