@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		A61A8D361B20FA3C00740E08 /* obstacle1.png in Resources */ = {isa = PBXBuildFile; fileRef = A61A8D351B20FA3C00740E08 /* obstacle1.png */; };
+		A61A8D381B23556000740E08 /* obstacle2.png in Resources */ = {isa = PBXBuildFile; fileRef = A61A8D371B23556000740E08 /* obstacle2.png */; };
+		A61A8D3C1B23576100740E08 /* obstacle3.png in Resources */ = {isa = PBXBuildFile; fileRef = A61A8D3B1B23576100740E08 /* obstacle3.png */; };
+		A61A8D3E1B2359B000740E08 /* obstacle4.png in Resources */ = {isa = PBXBuildFile; fileRef = A61A8D3D1B2359B000740E08 /* obstacle4.png */; };
+		A61A8D461B23609100740E08 /* obstacle5.png in Resources */ = {isa = PBXBuildFile; fileRef = A61A8D451B23609100740E08 /* obstacle5.png */; };
 		A6B43FC81B179D3900DED168 /* player_car.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B43FC71B179D3900DED168 /* player_car.png */; };
 		A6C206FF1B09A36500B32DCE /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C206FE1B09A36500B32DCE /* GameOverScene.swift */; };
 		A6C207031B09A65600B32DCE /* GameOverScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A6C207021B09A65600B32DCE /* GameOverScene.sks */; };
@@ -51,6 +55,10 @@
 
 /* Begin PBXFileReference section */
 		A61A8D351B20FA3C00740E08 /* obstacle1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = obstacle1.png; sourceTree = "<group>"; };
+		A61A8D371B23556000740E08 /* obstacle2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = obstacle2.png; sourceTree = "<group>"; };
+		A61A8D3B1B23576100740E08 /* obstacle3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = obstacle3.png; sourceTree = "<group>"; };
+		A61A8D3D1B2359B000740E08 /* obstacle4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = obstacle4.png; sourceTree = "<group>"; };
+		A61A8D451B23609100740E08 /* obstacle5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = obstacle5.png; sourceTree = "<group>"; };
 		A6B43FC71B179D3900DED168 /* player_car.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_car.png; sourceTree = "<group>"; };
 		A6C206FE1B09A36500B32DCE /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		A6C207021B09A65600B32DCE /* GameOverScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOverScene.sks; sourceTree = "<group>"; };
@@ -120,6 +128,10 @@
 		A6B43FBA1B17902800DED168 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				A61A8D451B23609100740E08 /* obstacle5.png */,
+				A61A8D3D1B2359B000740E08 /* obstacle4.png */,
+				A61A8D3B1B23576100740E08 /* obstacle3.png */,
+				A61A8D371B23556000740E08 /* obstacle2.png */,
 				A61A8D351B20FA3C00740E08 /* obstacle1.png */,
 				A6B43FC71B179D3900DED168 /* player_car.png */,
 			);
@@ -295,12 +307,16 @@
 			files = (
 				F03753571B03F96C00272763 /* LaunchScreen.xib in Resources */,
 				A6B43FC81B179D3900DED168 /* player_car.png in Resources */,
+				A61A8D461B23609100740E08 /* obstacle5.png in Resources */,
+				A61A8D3C1B23576100740E08 /* obstacle3.png in Resources */,
+				A61A8D381B23556000740E08 /* obstacle2.png in Resources */,
 				F03753541B03F96C00272763 /* Images.xcassets in Resources */,
 				F037534B1B03F96C00272763 /* GameScene.sks in Resources */,
 				A6C207031B09A65600B32DCE /* GameOverScene.sks in Resources */,
 				F03753521B03F96C00272763 /* Main.storyboard in Resources */,
 				A61A8D361B20FA3C00740E08 /* obstacle1.png in Resources */,
 				F0BC2B431B19183C0053CABA /* ScoreScene.sks in Resources */,
+				A61A8D3E1B2359B000740E08 /* obstacle4.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
