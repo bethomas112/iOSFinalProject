@@ -33,7 +33,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let FSScoreCategory: UInt32 = 1 << 3
     
     /*Player's score*/
-    var score : Int = 0;
+    var score : Int = 0
+    var scoreLabel : SKLabelNode!
     
     var swapScene : (() -> Bool)?
     
@@ -51,7 +52,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func initializeScene() {
         initCar()
-        initButtons()
+        initDisplay()
         initBackground()
         initWorld()
         initObstacles()
@@ -185,28 +186,36 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(obstacle)
     }
     
-    func initButtons() {
+    func initDisplay() {
         self.size = self.view!.frame.size
-        let demo = SKLabelNode(fontNamed:"AppleSDGothicNeo-Regular")
-        demo.text = "Accelerometer Demo";
-        demo.fontSize = 30;
-        demo.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame) + 225)
-        demo.zPosition = 3
-        self.addChild(demo)
+//        let demo = SKLabelNode(fontNamed:"AppleSDGothicNeo-Regular")
+//        demo.text = "Accelerometer Demo";
+//        demo.fontSize = 30;
+//        demo.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame) + 225)
+//        demo.zPosition = 3
+//        self.addChild(demo)
+//        
+//        let button = SKShapeNode(rectOfSize: CGSize(width: 150.0, height: 40.0))
+//        button.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame) + 150)
+//        button.fillColor = UIColor.grayColor()
+//        button.name = "swapSceneButton"
+//        button.zPosition = 3
+//        
+//        let buttonLabel = SKLabelNode(fontNamed: "AppleSDGothicNeo-Regular")
+//        buttonLabel.text = "ParseDemo"
+//        buttonLabel.fontSize = 20;
+//        buttonLabel.color = UIColor.greenColor()
+//        buttonLabel.zPosition - 3
+//        button.addChild(buttonLabel)
+//        self.addChild(button)
         
-        let button = SKShapeNode(rectOfSize: CGSize(width: 150.0, height: 40.0))
-        button.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame) + 150)
-        button.fillColor = UIColor.grayColor()
-        button.name = "swapSceneButton"
-        button.zPosition = 3
-        
-        let buttonLabel = SKLabelNode(fontNamed: "AppleSDGothicNeo-Regular")
-        buttonLabel.text = "ParseDemo"
-        buttonLabel.fontSize = 20;
-        buttonLabel.color = UIColor.greenColor()
-        buttonLabel.zPosition - 3
-        button.addChild(buttonLabel)
-        self.addChild(button)
+        scoreLabel = SKLabelNode(fontNamed:"AppleSDGothicNeo-Regular")
+        scoreLabel.text = "Score: \(score)"
+        scoreLabel.fontColor = UIColor.yellowColor()
+        scoreLabel.fontSize = 17
+        scoreLabel.position = CGPoint(x: self.frame.width - 50, y: self.frame.height - 20)
+        scoreLabel.zPosition = 50
+        self.addChild(scoreLabel)
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -243,14 +252,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             println("collision between player and obstacle")
             if contact.bodyA.node?.name == "player" {
                 contact.bodyA.velocity = CGVector(dx: 0.0, dy: -300.0)
-//                contact.bodyA.velocity = CGVector(dx: 0.0, dy: contact.bodyB.velocity.dy - 100.0)
                 println("Player speed reduced")
             }
             if contact.bodyB.node?.name == "player" {
                 contact.bodyB.velocity = CGVector(dx: 0.0, dy: -300.0)
-//                contact.bodyB.velocity = CGVector(dx: 0.0, dy: contact.bodyA.velocity.dy - 100.0)
                 println("Player speed reduced")
             }
+            
         }
         
         if(collision == FSObstacleCategory) {
@@ -261,6 +269,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if(collision == (FSScoreCategory | FSObstacleCategory)) {
             score++
+            scoreLabel.text = "Score: \(score)"
             println("current score is: " + String(score))
         }
     }
