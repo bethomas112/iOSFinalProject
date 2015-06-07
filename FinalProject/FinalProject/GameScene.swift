@@ -20,7 +20,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     /*Background*/
     var background: SKNode!
-    let background_speed = 300.0
+    let background_speed = 400.0
     
     /*Time Values*/
     var delta = NSTimeInterval(0)
@@ -30,6 +30,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let FSBoundaryCategory: UInt32 = 1 << 0
     let FSPlayerCategory: UInt32 = 1 << 1
     let FSObstacleCategory: UInt32 = 1 << 2
+    let FSScoreCategory: UInt32 = 1 << 3
+    
+    /*Player's score*/
+    var score : Int = 0;
     
     var swapScene : (() -> Bool)?
     
@@ -64,6 +68,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsBody?.categoryBitMask = FSBoundaryCategory
         self.physicsBody?.collisionBitMask = FSPlayerCategory | FSObstacleCategory
         self.physicsBody?.contactTestBitMask = FSPlayerCategory | FSObstacleCategory
+        
+        let threshold = SKSpriteNode(color: UIColor.clearColor(), size: CGSize(width: 1000, height: 30));
+        threshold.position = CGPointZero
+        threshold.physicsBody = SKPhysicsBody(rectangleOfSize: threshold.size);
+        threshold.physicsBody?.categoryBitMask = FSScoreCategory;
+        threshold.physicsBody?.contactTestBitMask = FSObstacleCategory;
+        threshold.physicsBody?.collisionBitMask = 0;
+        threshold.physicsBody?.dynamic = false;
+        threshold.zPosition = 20;
+        self.addChild(threshold);
     }
     
     func initBackground() {
@@ -109,6 +123,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.physicsBody?.restitution = 0.9
         player.physicsBody?.dynamic = true
         player.zPosition = 4
+        player.name = "player"
         player.position = CGPoint(x: 200, y: self.size.height / 6)
         self.destX = player.position.x
         
@@ -145,7 +160,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 var randInt: Int = Int(arc4random_uniform(5)) + 1
                 self.addObstacle("obstacle" + String(randInt))
             },
-            SKAction.waitForDuration(2.0, withRange: 0.5)
+            SKAction.waitForDuration(1.3, withRange: 0.5)
             ])
         
         let addObstacles = SKAction.repeatActionForever(addObstacle)
@@ -161,10 +176,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: obstacle.size.width / 2.0, height: obstacle.size.height))
         physicsBody.affectedByGravity = false
-        physicsBody.velocity = CGVector(dx: 0.0, dy: skRand(lowerBound: -250.0, upperBound: -100.0))
+        physicsBody.velocity = CGVector(dx: 0.0, dy: skRand(lowerBound: -375.0, upperBound: -100.0))
         physicsBody.categoryBitMask = FSObstacleCategory
-        physicsBody.contactTestBitMask = FSPlayerCategory | FSBoundaryCategory
-        physicsBody.collisionBitMask = FSPlayerCategory | FSBoundaryCategory
+        physicsBody.contactTestBitMask = FSPlayerCategory | FSBoundaryCategory | FSObstacleCategory
+        physicsBody.collisionBitMask = FSPlayerCategory | FSBoundaryCategory | FSObstacleCategory
         obstacle.physicsBody = physicsBody
         
         self.addChild(obstacle)
@@ -222,6 +237,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 contact.bodyB.node?.removeFromParent()
                 println("obstacle removed")
             }
+        }
+        
+        if(collision == (FSPlayerCategory | FSObstacleCategory)) {
+            println("collision between player and obstacle")
+            if contact.bodyA.node?.name == "player" {
+                contact.bodyA.velocity = CGVector(dx: 0.0, dy: -300.0)
+//                contact.bodyA.velocity = CGVector(dx: 0.0, dy: contact.bodyB.velocity.dy - 100.0)
+                println("Player speed reduced")
+            }
+            if contact.bodyB.node?.name == "player" {
+                contact.bodyB.velocity = CGVector(dx: 0.0, dy: -300.0)
+//                contact.bodyB.velocity = CGVector(dx: 0.0, dy: contact.bodyA.velocity.dy - 100.0)
+                println("Player speed reduced")
+            }
+        }
+        
+        if(collision == FSObstacleCategory) {
+            println("collision between two obstacles")
+            contact.bodyA.velocity = CGVector(dx: 0.0, dy: -background_speed)
+            contact.bodyB.velocity = CGVector(dx: 0.0, dy: -background_speed)
+        }
+        
+        if(collision == (FSScoreCategory | FSObstacleCategory)) {
+            score++
+            println("current score is: " + String(score))
         }
     }
    
