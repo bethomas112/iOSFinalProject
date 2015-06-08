@@ -36,7 +36,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var score : Int = 0
     var scoreLabel : SKLabelNode!
     
-    var swapScene : (() -> Bool)?
+    var swapScene : ((Int) -> Bool)?
     
     func skRandf() -> CGFloat {
         return CGFloat(Double(arc4random()) / Double(UINT32_MAX))
@@ -78,6 +78,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         threshold.physicsBody?.collisionBitMask = 0;
         threshold.physicsBody?.dynamic = false;
         threshold.zPosition = 20;
+        threshold.name = "scoreZone"
         self.addChild(threshold);
     }
     
@@ -218,6 +219,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(scoreLabel)
     }
     
+    func gameOver() {
+        
+        childNodeWithName("scoreZone")?.removeFromParent()
+        
+        let gameOverTitleAction = SKAction.runBlock() {
+            let gameOverLabel : SKLabelNode = SKLabelNode(fontNamed:"AppleSDGothicNeo-Regular")
+            gameOverLabel.text = "Game Over"
+            gameOverLabel.fontColor = UIColor.yellowColor()
+            gameOverLabel.fontSize = 50
+            gameOverLabel.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame))
+            gameOverLabel.zPosition = 50
+            self.addChild(gameOverLabel)
+        }
+        
+        let switchSceneAction = SKAction.runBlock() {
+            swapScene!(score)
+        }
+        
+        runAction(SKAction.sequence([gameOverTitleAction, SKAction.waitForDuration(2.0), switchSceneAction]));
+    }
+    
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         /* Called when a touch begins */
         for touch: AnyObject in touches {
@@ -225,7 +247,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if let theName = self.nodeAtPoint(location).name {
                 if theName == "swapSceneButton" {
                     self.removeAllChildren()
-                    if (!swapScene!()) {
+                    if (!swapScene!(score)) {
                         initializeScene()
                     }
                 }
@@ -258,6 +280,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 contact.bodyB.velocity = CGVector(dx: 0.0, dy: -300.0)
                 println("Player speed reduced")
             }
+            
+            gameOver()
             
         }
         

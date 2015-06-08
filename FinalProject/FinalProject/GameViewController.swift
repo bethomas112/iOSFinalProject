@@ -95,9 +95,9 @@ class GameViewController: UIViewController {
         return false
     }
     
-    internal func switchToParseView() -> Bool{
+    internal func switchToParseView(score : Int) -> Bool{
         
-        return switchtoScoreView(15)
+        return switchtoScoreView(score)
         
         /*if let scene = GameOverScene.unarchiveFromFile("GameOverScene") as? GameOverScene {
             // Configure the view.
