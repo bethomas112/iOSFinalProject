@@ -28,7 +28,7 @@ extension SKNode {
 class GameViewController: UIViewController {
 
     var gameOverScene: GameOverScene?
-    var accelerometerScene: GameScene?
+    var gameScene: GameScene?
     var scoreScene: ScoreScene?
     var highScoreScene = HighScoreScene()
     var skView: SKView?
@@ -38,35 +38,18 @@ class GameViewController: UIViewController {
 
         skView = self.view as? SKView
         
-        if let scene = GameScene.unarchiveFromFile("GameScene") as? GameScene {
-            // Configure the view.
-            
-            skView!.showsFPS = true
-            skView!.showsNodeCount = true
-            skView!.showsPhysics = true
-            
-            /* Sprite Kit applies additional optimizations to improve rendering performance */
-            skView!.ignoresSiblingOrder = true
-            
-            /* Set the scale mode to scale to fit the window */
-            scene.scaleMode = .AspectFill
-            scene.swapScene = switchToParseView
-            accelerometerScene = scene
-            
-        }
-        
         if let scene = ScoreScene.unarchiveFromFile("ScoreScene") as? ScoreScene {
             skView!.ignoresSiblingOrder = true
             scene.scaleMode = .AspectFill
             scene.switchToHighScores = switchToHighScoreView
-            scene.restartGame = switchToAccelerometerView
+            scene.restartGame = switchToGameView
             scoreScene = scene
         }
         
         highScoreScene.scaleMode = .AspectFill
-        highScoreScene.restartGame = switchToAccelerometerView
+        highScoreScene.restartGame = switchToGameView
         
-        switchToAccelerometerView()
+        switchToGameView()
         //switchtoScoreView(15)
         //switchToHighScoreView()
         //switchToParseView()
@@ -87,12 +70,26 @@ class GameViewController: UIViewController {
         return true
     }
     
-    internal func switchToAccelerometerView() -> Bool {
-        if let scene = accelerometerScene {
+    internal func switchToGameView() -> Bool {
+        if let scene = GameScene.unarchiveFromFile("GameScene") as? GameScene {
+            // Configure the view.
+            
+            skView!.showsFPS = true
+            skView!.showsNodeCount = true
+            skView!.showsPhysics = true
+            
+            /* Sprite Kit applies additional optimizations to improve rendering performance */
+            skView!.ignoresSiblingOrder = true
+            
+            /* Set the scale mode to scale to fit the window */
+            scene.scaleMode = .AspectFill
+            scene.swapScene = switchToParseView
             skView!.presentScene(scene)
+            
             return true
         }
         return false
+
     }
     
     internal func switchToParseView(score : Int) -> Bool{
