@@ -117,7 +117,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let gameOverTitleAction = SKAction.runBlock() {
             countdownLabel.text = "3"
             countdownLabel.fontColor = UIColor.yellowColor()
-            countdownLabel.fontSize = 50
+            countdownLabel.fontSize = 70
             countdownLabel.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame))
             countdownLabel.zPosition = 50
             self.addChild(countdownLabel)
