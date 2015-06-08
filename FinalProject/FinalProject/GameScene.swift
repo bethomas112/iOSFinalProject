@@ -277,17 +277,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         /* Called when a touch begins */
-        for touch: AnyObject in touches {
-            let location = (touch as! UITouch).locationInNode(self)
-            if let theName = self.nodeAtPoint(location).name {
-                if theName == "swapSceneButton" {
-                    self.removeAllChildren()
-                    if (!swapScene!(score)) {
-                        initializeScene()
-                    }
-                }
-            }
-        }
+//        for touch: AnyObject in touches {
+//            let location = (touch as! UITouch).locationInNode(self)
+//            if let theName = self.nodeAtPoint(location).name {
+//                if theName == "swapSceneButton" {
+//                    self.removeAllChildren()
+//                    if (!swapScene!(score)) {
+//                        initializeScene()
+//                    }
+//                }
+//            }
+//        }
         
     }
     
