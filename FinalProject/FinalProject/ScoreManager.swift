@@ -45,9 +45,15 @@ class ScoreManager {
     
     func calculateSkip() -> Int {
         var rank = getPlayerRank()
+        var numScores = getNumScores()
+        
+        println("Rank is \(rank)")
         
         if (rank - 3) < 0 {
             return 0
+        }
+        else if (rank + 3) > numScores {
+            return numScores - 5
         }
         else {
             return rank - 3
@@ -59,6 +65,7 @@ class ScoreManager {
         query.orderByDescending("score")
         query.limit = 5
         query.skip = calculateSkip()
+        println("calculated Skip \(query.skip)")
         var surroundingScores : [String] = []
         
         let scores = query.findObjects()
@@ -84,7 +91,7 @@ class ScoreManager {
         var query = PFQuery(className: "GameScore")
         query.orderByDescending("score")
         let scores = query.findObjects()
-        
+        println("player objid \(parseObjectID)")
         if let objects = scores as? [PFObject] {
             for (idx, object) in enumerate(objects) {
                 if (object.objectId == parseObjectID) {
@@ -103,6 +110,10 @@ class ScoreManager {
     func getPlayerRankString() -> String {
         var totalScores = getNumScores()
         var playerRank = getPlayerRank()
+        
+        if (playerRank == -1) {
+            return ""
+        }
         return "\(playerRank) out of \(totalScores)"
     }
     
@@ -111,17 +122,11 @@ class ScoreManager {
             let gameScore = PFObject(className: "GameScore")
             gameScore["score"] = score
             gameScore["playerName"] = userName
-            gameScore.saveInBackgroundWithBlock {
-                [unowned self]
-                (success: Bool, error: NSError?) -> Void in
-                if (success) {
-                    self.playerUserName = userName
-                    self.parseObjectID = gameScore.objectId!
-                    self.playerScore = score
-                    self.storeLocalObjectID()
-                } else {
-                    // There was a problem, check error.description
-                }
+            self.playerUserName = userName
+            self.playerScore = score
+            if (gameScore.save()) {
+                self.parseObjectID = gameScore.objectId!
+                self.storeLocalObjectID()
             }
         }
         else if (score > playerScore) {
@@ -137,7 +142,7 @@ class ScoreManager {
                         gameScore["playerName"] = self.playerUserName
                     }
                     gameScore["score"] = score
-                    gameScore.saveInBackground()
+                    gameScore.save()
                     self.playerScore = score
                     self.storeLocalObjectID()
                 }
@@ -153,7 +158,7 @@ class ScoreManager {
                 } else if let gameScore = gameScore {
                     self.playerUserName = userName
                     gameScore["playerName"] = self.playerUserName
-                    gameScore.saveInBackground()
+                    gameScore.save()
                     self.playerScore = score
                     self.storeLocalObjectID()
                 }

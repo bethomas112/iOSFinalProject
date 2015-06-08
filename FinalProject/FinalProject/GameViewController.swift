@@ -31,6 +31,7 @@ class GameViewController: UIViewController {
     var gameScene: GameScene?
     var scoreScene: ScoreScene?
     var highScoreScene = HighScoreScene()
+    var scoreManager = ScoreManager()
     var skView: SKView?
     
     override func viewDidLoad() {
@@ -43,11 +44,13 @@ class GameViewController: UIViewController {
             scene.scaleMode = .AspectFill
             scene.switchToHighScores = switchToHighScoreView
             scene.restartGame = switchToGameView
+            scene.scoreManager = scoreManager
             scoreScene = scene
         }
         
         highScoreScene.scaleMode = .AspectFill
         highScoreScene.restartGame = switchToGameView
+        highScoreScene.scoreManager = scoreManager
         
         switchToGameView()
         //switchtoScoreView(15)

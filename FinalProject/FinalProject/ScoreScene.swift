@@ -10,7 +10,7 @@ import SpriteKit
 
 class ScoreScene: SKScene {
     private var initialized: Bool = false
-    var scoreManager = ScoreManager()
+    var scoreManager : ScoreManager?
     var playerScore: Int = 0
     
     /* Callbacks */
@@ -57,8 +57,8 @@ class ScoreScene: SKScene {
         playerNameField = textField
         self.view?.addSubview(playerNameField!)
         
-        if (scoreManager.playerUserName != "") {
-            textField.text = scoreManager.playerUserName
+        if (scoreManager!.playerUserName != "") {
+            textField.text = scoreManager!.playerUserName
         }
     }
     
@@ -68,20 +68,22 @@ class ScoreScene: SKScene {
         rankLabel.removeFromParent()
         playerRankLabel.removeFromParent()
         
+        scoreLabel.text = "Your Score: \(playerScore)"
+        
         self.view?.addSubview(playerNameField!)
         self.addChild(nameLabel)
         self.addChild(submitButton)
     }
     
     func submitPlayerInfo(userName : String) {
-        scoreManager.updatePlayerScore(userName, score: playerScore)
+        scoreManager!.updatePlayerScore(userName, score: playerScore)
     }
     
     func submitButtonHandeler() {
         if let userText = playerNameField?.text {
             if (userText != "") {
                 submitPlayerInfo(userText)
-                var rankString = scoreManager.getPlayerRankString()
+                var rankString = scoreManager!.getPlayerRankString()
                 playerRankLabel.text = rankString
                 submitButton.removeFromParent()
                 playerNameField!.removeFromSuperview()
@@ -91,6 +93,9 @@ class ScoreScene: SKScene {
                 self.addChild(restartButton)
                 self.addChild(highScoreButton)
                 self.addChild(playerRankLabel)
+                if (rankString == "") {
+                    restartButtonHandeler()
+                }
                 
             }
         }
@@ -106,7 +111,7 @@ class ScoreScene: SKScene {
     
     func initButtons() {
         submitButton.pressCallBack = submitButtonHandeler
-        submitButton.text = "Submit Score"
+        submitButton.text = "Continue"
         submitButton.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame))
         
         restartButton.pressCallBack = restartButtonHandeler
