@@ -12,7 +12,7 @@ import CoreMotion
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     /*Accerometer Movement*/
-    let moveSpeed: CGFloat = 500.0
+    let moveSpeed: CGFloat = 300.0
     var player = SKSpriteNode()
     var motionManager = CMMotionManager()
     var destX:CGFloat = 0.0
@@ -51,11 +51,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func initializeScene() {
-        initCar()
         initDisplay()
         initBackground()
         initWorld()
-        initObstacles()
+//        initObstacles()
+        initCountdown()
     }
     
     func initWorld() {
@@ -110,7 +110,42 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         }
     }
+    
+    func initCountdown() {
+        var countdownLabel : SKLabelNode = SKLabelNode(fontNamed:"AppleSDGothicNeo-Regular")
         
+        let gameOverTitleAction = SKAction.runBlock() {
+            countdownLabel.text = "3"
+            countdownLabel.fontColor = UIColor.yellowColor()
+            countdownLabel.fontSize = 50
+            countdownLabel.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame))
+            countdownLabel.zPosition = 50
+            self.addChild(countdownLabel)
+        }
+        
+        let countdownAction2 = SKAction.runBlock() {
+            countdownLabel.text = "2"
+        }
+        
+        let countdownAction1 = SKAction.runBlock() {
+            countdownLabel.text = "1"
+        }
+        let countdownAction0 = SKAction.runBlock() {
+            countdownLabel.text = "Go!"
+        }
+        
+        let startCarAction = SKAction.runBlock() {
+            countdownLabel.removeFromParent()
+            self.initCar()
+        }
+        
+        let startObstaclesAction = SKAction.runBlock() {
+            self.initObstacles()
+        }
+        
+        runAction(SKAction.sequence([gameOverTitleAction, SKAction.waitForDuration(1.0), countdownAction2, SKAction.waitForDuration(1.0), countdownAction1, SKAction.waitForDuration(1.0), countdownAction0, SKAction.waitForDuration(1.0), startCarAction, SKAction.waitForDuration(3.0), startObstaclesAction]));
+    }
+    
     func initCar() {
         player = SKSpriteNode(imageNamed:"player_car")
         motionManager = CMMotionManager()
