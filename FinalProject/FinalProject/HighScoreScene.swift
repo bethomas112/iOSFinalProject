@@ -10,7 +10,7 @@ import SpriteKit
 
 class HighScoreScene: SKScene {
     private var initialized : Bool = false
-    private var scoreManager = ScoreManager()
+    var scoreManager : ScoreManager?
     
     /* Labels */
     var highScoreLabel = SKLabelNode(fontNamed: "AppleSDGothicNeo-Regular")
@@ -35,7 +35,7 @@ class HighScoreScene: SKScene {
     }
     
     func addTopScores() {
-        let topScores = scoreManager.getTopScores()
+        let topScores = scoreManager!.getTopScores()
         
         for (idx, score) in enumerate(topScores) {
             var label = SKLabelNode(fontNamed: "AppleSDGothicNeo-Regular")
@@ -48,7 +48,7 @@ class HighScoreScene: SKScene {
     }
     
     func addRelativeScores() {
-        let relScores = scoreManager.getSurroundingScores()
+        let relScores = scoreManager!.getSurroundingScores()
         
         for (idx, score) in enumerate(relScores) {
             var label = SKLabelNode(fontNamed: "AppleSDGothicNeo-Regular")
