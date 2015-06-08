@@ -159,7 +159,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func initObstacles() {
         let addObstacle = SKAction.sequence([
             SKAction.runBlock {
-                var randInt: Int = Int(arc4random_uniform(5)) + 1
+                var randInt: Int = Int(arc4random_uniform(11)) + 1
                 self.addObstacle("obstacle" + String(randInt))
             },
             SKAction.waitForDuration(1.3, withRange: 0.5)

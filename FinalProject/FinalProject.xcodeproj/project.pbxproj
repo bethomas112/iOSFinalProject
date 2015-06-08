@@ -15,6 +15,12 @@
 		A6B43FC81B179D3900DED168 /* player_car.png in Resources */ = {isa = PBXBuildFile; fileRef = A6B43FC71B179D3900DED168 /* player_car.png */; };
 		A6C206FF1B09A36500B32DCE /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C206FE1B09A36500B32DCE /* GameOverScene.swift */; };
 		A6C207031B09A65600B32DCE /* GameOverScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A6C207021B09A65600B32DCE /* GameOverScene.sks */; };
+		A6E28AB41B251E21002D3A3E /* obstacle6.png in Resources */ = {isa = PBXBuildFile; fileRef = A6E28AAE1B251E21002D3A3E /* obstacle6.png */; };
+		A6E28AB51B251E21002D3A3E /* obstacle7.png in Resources */ = {isa = PBXBuildFile; fileRef = A6E28AAF1B251E21002D3A3E /* obstacle7.png */; };
+		A6E28AB61B251E21002D3A3E /* obstacle8.png in Resources */ = {isa = PBXBuildFile; fileRef = A6E28AB01B251E21002D3A3E /* obstacle8.png */; };
+		A6E28AB71B251E21002D3A3E /* obstacle9.png in Resources */ = {isa = PBXBuildFile; fileRef = A6E28AB11B251E21002D3A3E /* obstacle9.png */; };
+		A6E28AB81B251E21002D3A3E /* obstacle10.png in Resources */ = {isa = PBXBuildFile; fileRef = A6E28AB21B251E21002D3A3E /* obstacle10.png */; };
+		A6E28AB91B251E21002D3A3E /* obstacle11.png in Resources */ = {isa = PBXBuildFile; fileRef = A6E28AB31B251E21002D3A3E /* obstacle11.png */; };
 		F01A21601B097961007DB416 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01A215E1B097961007DB416 /* Bolts.framework */; };
 		F01A21611B097961007DB416 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01A215F1B097961007DB416 /* Parse.framework */; };
 		F01A21631B0979F8007DB416 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01A21621B0979F8007DB416 /* AudioToolbox.framework */; };
@@ -62,6 +68,12 @@
 		A6B43FC71B179D3900DED168 /* player_car.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_car.png; sourceTree = "<group>"; };
 		A6C206FE1B09A36500B32DCE /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		A6C207021B09A65600B32DCE /* GameOverScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOverScene.sks; sourceTree = "<group>"; };
+		A6E28AAE1B251E21002D3A3E /* obstacle6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = obstacle6.png; sourceTree = "<group>"; };
+		A6E28AAF1B251E21002D3A3E /* obstacle7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = obstacle7.png; sourceTree = "<group>"; };
+		A6E28AB01B251E21002D3A3E /* obstacle8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = obstacle8.png; sourceTree = "<group>"; };
+		A6E28AB11B251E21002D3A3E /* obstacle9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = obstacle9.png; sourceTree = "<group>"; };
+		A6E28AB21B251E21002D3A3E /* obstacle10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = obstacle10.png; sourceTree = "<group>"; };
+		A6E28AB31B251E21002D3A3E /* obstacle11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = obstacle11.png; sourceTree = "<group>"; };
 		F01A215E1B097961007DB416 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		F01A215F1B097961007DB416 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		F01A21621B0979F8007DB416 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -128,6 +140,12 @@
 		A6B43FBA1B17902800DED168 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				A6E28AAE1B251E21002D3A3E /* obstacle6.png */,
+				A6E28AAF1B251E21002D3A3E /* obstacle7.png */,
+				A6E28AB01B251E21002D3A3E /* obstacle8.png */,
+				A6E28AB11B251E21002D3A3E /* obstacle9.png */,
+				A6E28AB21B251E21002D3A3E /* obstacle10.png */,
+				A6E28AB31B251E21002D3A3E /* obstacle11.png */,
 				A61A8D451B23609100740E08 /* obstacle5.png */,
 				A61A8D3D1B2359B000740E08 /* obstacle4.png */,
 				A61A8D3B1B23576100740E08 /* obstacle3.png */,
@@ -307,14 +325,20 @@
 			files = (
 				F03753571B03F96C00272763 /* LaunchScreen.xib in Resources */,
 				A6B43FC81B179D3900DED168 /* player_car.png in Resources */,
+				A6E28AB91B251E21002D3A3E /* obstacle11.png in Resources */,
+				A6E28AB61B251E21002D3A3E /* obstacle8.png in Resources */,
 				A61A8D461B23609100740E08 /* obstacle5.png in Resources */,
 				A61A8D3C1B23576100740E08 /* obstacle3.png in Resources */,
+				A6E28AB51B251E21002D3A3E /* obstacle7.png in Resources */,
+				A6E28AB71B251E21002D3A3E /* obstacle9.png in Resources */,
 				A61A8D381B23556000740E08 /* obstacle2.png in Resources */,
 				F03753541B03F96C00272763 /* Images.xcassets in Resources */,
 				F037534B1B03F96C00272763 /* GameScene.sks in Resources */,
 				A6C207031B09A65600B32DCE /* GameOverScene.sks in Resources */,
 				F03753521B03F96C00272763 /* Main.storyboard in Resources */,
 				A61A8D361B20FA3C00740E08 /* obstacle1.png in Resources */,
+				A6E28AB81B251E21002D3A3E /* obstacle10.png in Resources */,
+				A6E28AB41B251E21002D3A3E /* obstacle6.png in Resources */,
 				F0BC2B431B19183C0053CABA /* ScoreScene.sks in Resources */,
 				A61A8D3E1B2359B000740E08 /* obstacle4.png in Resources */,
 			);
