@@ -177,16 +177,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 var randInt: Int = Int(arc4random_uniform(11)) + 1
                 self.addObstacle("obstacle" + String(randInt))
             },
-            SKAction.waitForDuration(1.3, withRange: 0.5)
+            SKAction.waitForDuration(timeDifficulty, withRange: 0.2)
             ])
         
-        let addObstacles = SKAction.repeatAction(addObstacle, count: 50)
+        let addObstacles = SKAction.repeatAction(addObstacle, count: 5)
         
         let createProgressiveDifficulty = SKAction.sequence([
-            addObstacles
+            addObstacles,
+            SKAction.runBlock {
+                if timeDifficulty > 0.3 {
+                    timeDifficulty -= -0.1
+                }
+            }
             ])
         
-        runAction(addObstacles)
+        runAction(createProgressiveDifficulty)
     }
     
     func addObstacle(fileName: String) {
