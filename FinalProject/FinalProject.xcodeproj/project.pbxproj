@@ -20,6 +20,8 @@
 		A6E28AB71B251E21002D3A3E /* obstacle9.png in Resources */ = {isa = PBXBuildFile; fileRef = A6E28AB11B251E21002D3A3E /* obstacle9.png */; };
 		A6E28AB81B251E21002D3A3E /* obstacle10.png in Resources */ = {isa = PBXBuildFile; fileRef = A6E28AB21B251E21002D3A3E /* obstacle10.png */; };
 		A6E28AB91B251E21002D3A3E /* obstacle11.png in Resources */ = {isa = PBXBuildFile; fileRef = A6E28AB31B251E21002D3A3E /* obstacle11.png */; };
+		A6E28ABC1B26CEAF002D3A3E /* crash-side.wav in Resources */ = {isa = PBXBuildFile; fileRef = A6E28ABB1B26CEAF002D3A3E /* crash-side.wav */; };
+		A6E28ABE1B26D0CA002D3A3E /* crash-cars.wav in Resources */ = {isa = PBXBuildFile; fileRef = A6E28ABD1B26D0CA002D3A3E /* crash-cars.wav */; };
 		F01A21601B097961007DB416 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01A215E1B097961007DB416 /* Bolts.framework */; };
 		F01A21611B097961007DB416 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01A215F1B097961007DB416 /* Parse.framework */; };
 		F01A21631B0979F8007DB416 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01A21621B0979F8007DB416 /* AudioToolbox.framework */; };
@@ -72,6 +74,8 @@
 		A6E28AB11B251E21002D3A3E /* obstacle9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = obstacle9.png; sourceTree = "<group>"; };
 		A6E28AB21B251E21002D3A3E /* obstacle10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = obstacle10.png; sourceTree = "<group>"; };
 		A6E28AB31B251E21002D3A3E /* obstacle11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = obstacle11.png; sourceTree = "<group>"; };
+		A6E28ABB1B26CEAF002D3A3E /* crash-side.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "crash-side.wav"; sourceTree = "<group>"; };
+		A6E28ABD1B26D0CA002D3A3E /* crash-cars.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "crash-cars.wav"; sourceTree = "<group>"; };
 		F01A215E1B097961007DB416 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		F01A215F1B097961007DB416 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		F01A21621B0979F8007DB416 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -218,6 +222,8 @@
 		F03753461B03F96C00272763 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A6E28ABD1B26D0CA002D3A3E /* crash-cars.wav */,
+				A6E28ABB1B26CEAF002D3A3E /* crash-side.wav */,
 				F03753471B03F96C00272763 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -325,6 +331,7 @@
 				A6E28AB91B251E21002D3A3E /* obstacle11.png in Resources */,
 				A6E28AB61B251E21002D3A3E /* obstacle8.png in Resources */,
 				A61A8D461B23609100740E08 /* obstacle5.png in Resources */,
+				A6E28ABE1B26D0CA002D3A3E /* crash-cars.wav in Resources */,
 				A61A8D3C1B23576100740E08 /* obstacle3.png in Resources */,
 				A6E28AB51B251E21002D3A3E /* obstacle7.png in Resources */,
 				A6E28AB71B251E21002D3A3E /* obstacle9.png in Resources */,
@@ -338,6 +345,7 @@
 				A6E28AB41B251E21002D3A3E /* obstacle6.png in Resources */,
 				F0BC2B431B19183C0053CABA /* ScoreScene.sks in Resources */,
 				A61A8D3E1B2359B000740E08 /* obstacle4.png in Resources */,
+				A6E28ABC1B26CEAF002D3A3E /* crash-side.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

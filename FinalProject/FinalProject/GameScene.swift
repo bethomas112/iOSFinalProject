@@ -264,6 +264,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func didBeginContact(contact: SKPhysicsContact) {
         let collision: UInt32 = (contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask);
         
+        if(collision == (FSPlayerCategory | FSBoundaryCategory)) {
+            println("side crash")
+            runAction(SKAction.playSoundFileNamed("crash-side.wav", waitForCompletion: false))
+        }
+        
         if(collision == (FSObstacleCategory | FSBoundaryCategory)) {
             if contact.bodyA.node?.name == "obstacle" {
                 contact.bodyA.node?.removeFromParent()
@@ -276,6 +281,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if(collision == (FSPlayerCategory | FSObstacleCategory)) {
+            runAction(SKAction.playSoundFileNamed("crash-cars.wav", waitForCompletion: false))
+            
             if contact.bodyA.node?.name == "player" {
                 contact.bodyA.velocity = CGVector(dx: 0.0, dy: -300.0)
             }
