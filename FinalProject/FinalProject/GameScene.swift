@@ -164,7 +164,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.name = "player"
         player.position = CGPoint(x: 200, y: self.size.height / 6)
         self.destX = player.position.x
-        
+        motionManager.startAccelerometerUpdates()
+
         self.addChild(player)
 
     }
@@ -296,13 +297,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if let data = motionManager.accelerometerData {
             let accelDir = data.acceleration.x
             if (fabs(accelDir) > 0.015) {
-                if (accelDir * prevMovement > 0) {
-                    player.physicsBody!.applyForce(CGVectorMake(40.0 * CGFloat(accelDir), 0))
-                }
-                else {
+                if (accelDir * prevMovement < 0) {
                     player.physicsBody!.velocity.dx = 0.0
-                    player.physicsBody!.applyForce(CGVectorMake(40.0 * CGFloat(accelDir), 0))
                 }
+                player.physicsBody!.applyForce(CGVectorMake(40.0 * CGFloat(accelDir), 0))
+                
                 prevMovement = accelDir
             }
         }
