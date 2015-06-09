@@ -163,9 +163,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.zPosition = 4
         player.name = "player"
         player.position = CGPoint(x: 200, y: self.size.height / 6)
+        player.alpha = 0.0
         self.destX = player.position.x
         motionManager.startAccelerometerUpdates()
         self.addChild(player)
+        player.runAction(SKAction.fadeInWithDuration(0.5))
 
     }
     
