@@ -27,7 +27,6 @@ extension SKNode {
 
 class GameViewController: UIViewController {
 
-    var gameOverScene: GameOverScene?
     var gameScene: GameScene?
     var scoreScene: ScoreScene?
     var highScoreScene = HighScoreScene()
