@@ -165,7 +165,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.position = CGPoint(x: 200, y: self.size.height / 6)
         self.destX = player.position.x
         motionManager.startAccelerometerUpdates()
-
         self.addChild(player)
 
     }

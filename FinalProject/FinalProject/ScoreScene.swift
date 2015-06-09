@@ -19,6 +19,7 @@ class ScoreScene: SKScene {
     
     /* Text Field */
     var playerNameField: UITextField?
+    var textFieldExists : Bool = false
     
     /* Buttons */
     var submitButton = Button(rectSize: CGSize(width: 200, height: 40))
@@ -56,6 +57,7 @@ class ScoreScene: SKScene {
         
         playerNameField = textField
         self.view?.addSubview(playerNameField!)
+        textFieldExists = true
         
         if (scoreManager!.playerUserName != "") {
             textField.text = scoreManager!.playerUserName
@@ -63,15 +65,19 @@ class ScoreScene: SKScene {
     }
     
     func reloadScene() {
-        restartButton.removeFromParent()
-        highScoreButton.removeFromParent()
-        rankLabel.removeFromParent()
-        playerRankLabel.removeFromParent()
+        self.removeAllChildren()
+        //restartButton.removeFromParent()
+        //highScoreButton.removeFromParent()
+        //rankLabel.removeFromParent()
+        //playerRankLabel.removeFromParent()
         
+        self.addChild(scoreLabel)
         scoreLabel.text = "Your Score: \(playerScore)"
         
         self.view?.addSubview(playerNameField!)
+        textFieldExists = true
         self.addChild(nameLabel)
+        self.addChild(restartButton)
         self.addChild(submitButton)
     }
     
@@ -87,10 +93,11 @@ class ScoreScene: SKScene {
                 playerRankLabel.text = rankString
                 submitButton.removeFromParent()
                 playerNameField!.removeFromSuperview()
+                textFieldExists = false
                 nameLabel.removeFromParent()
                 
                 self.addChild(rankLabel)
-                self.addChild(restartButton)
+                //self.addChild(restartButton)
                 self.addChild(highScoreButton)
                 self.addChild(playerRankLabel)
                 if (rankString == "") {
@@ -102,6 +109,10 @@ class ScoreScene: SKScene {
     }
     
     func restartButtonHandeler() {
+        if (textFieldExists) {
+            playerNameField!.removeFromSuperview()
+            textFieldExists = false
+        }
         restartGame!()
     }
     
@@ -111,8 +122,8 @@ class ScoreScene: SKScene {
     
     func initButtons() {
         submitButton.pressCallBack = submitButtonHandeler
-        submitButton.text = "Continue"
-        submitButton.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame))
+        submitButton.text = "Submit Score"
+        submitButton.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame) + 15)
         
         restartButton.pressCallBack = restartButtonHandeler
         restartButton.text = "Restart"
@@ -122,6 +133,7 @@ class ScoreScene: SKScene {
         highScoreButton.text = "High Scores"
         highScoreButton.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame) + 10)
         self.addChild(submitButton)
+        self.addChild(restartButton)
     }
     
     func initLabels() {
@@ -133,7 +145,7 @@ class ScoreScene: SKScene {
         nameLabel.fontSize = 25
         nameLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame) + 110)
         
-        rankLabel.text = "You Ranked:"
+        rankLabel.text = "Your Top Rank:"
         rankLabel.fontSize = 35
         rankLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame) + 140)
         
