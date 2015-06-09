@@ -17,6 +17,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var motionManager = CMMotionManager()
     var destX:CGFloat = 0.0
     var destY:CGFloat = 0.0
+    var prevMovement = 1.0
     
     /*Background*/
     var background: SKNode!
@@ -158,35 +159,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.physicsBody?.allowsRotation = false;
         player.physicsBody?.restitution = 0.9
         player.physicsBody?.dynamic = true
+        player.physicsBody?.mass = 0.02
         player.zPosition = 4
         player.name = "player"
         player.position = CGPoint(x: 200, y: self.size.height / 6)
         self.destX = player.position.x
         
         self.addChild(player)
-        
-        if motionManager.accelerometerAvailable {
-            
-            motionManager.startAccelerometerUpdatesToQueue(NSOperationQueue.currentQueue(), withHandler:{
-                data, error in
-                
-                var currentX = self.player.position.x
-                var currentY = self.player.position.y
-                
-                // 3
-                if data.acceleration.x < -0.015 {
-                    self.destX = currentX + CGFloat(data.acceleration.x * 800)
-                }
-                    
-                else if data.acceleration.x > 0.015 {
-                    self.destX = currentX + CGFloat(data.acceleration.x * 800)
-                }
-                else {
-                    self.destX = currentX
-                }
-                
-            })
-        }
 
     }
     
@@ -306,6 +285,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             println("current score is: " + String(score))
         }
     }
+    
+    
+    func getUserMovement() {
+        if let data = motionManager.accelerometerData {
+            let accelDir = data.acceleration.x
+            if (fabs(accelDir) > 0.015) {
+                if (accelDir * prevMovement > 0) {
+                    player.physicsBody!.applyForce(CGVectorMake(40.0 * CGFloat(accelDir), 0))
+                }
+                else {
+                    player.physicsBody!.velocity.dx = 0.0
+                    player.physicsBody!.applyForce(CGVectorMake(40.0 * CGFloat(accelDir), 0))
+                }
+                prevMovement = accelDir
+            }
+        }
+    }
    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
@@ -313,15 +309,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         last_update_time = currentTime;
         
         moveBackground()
-        
-        if (destX > self.size.width - (self.size.width / 12.0)) {
-            destX = self.size.width - (self.size.width / 12.0)
-        }
-        if (destX < self.size.width / 12.0) {
-            destX = self.size.width / 12.0
-        }
-        
-        var action = SKAction.moveToX(destX, duration: NSTimeInterval(0.1))
-        player.runAction(action)
+        getUserMovement()
     }
 }
