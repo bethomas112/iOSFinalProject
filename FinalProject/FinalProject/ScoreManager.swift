@@ -131,37 +131,25 @@ class ScoreManager {
         }
         else if (score > playerScore) {
             var query = PFQuery(className: "GameScore")
-            query.getObjectInBackgroundWithId(parseObjectID) {
-                [unowned self]
-                (gameScore: PFObject?, error: NSError?) -> Void in
-                if error != nil {
-                    println(error)
-                } else if let gameScore = gameScore {
-                    if (userName != self.playerUserName) {
-                        self.playerUserName = userName
-                        gameScore["playerName"] = self.playerUserName
-                    }
-                    gameScore["score"] = score
-                    gameScore.save()
-                    self.playerScore = score
-                    self.storeLocalObjectID()
+            if let gameScore = query.getObjectWithId(parseObjectID) {
+                if (userName != self.playerUserName) {
+                    self.playerUserName = userName
+                    gameScore["playerName"] = self.playerUserName
                 }
+                gameScore["score"] = score
+                gameScore.save()
+                self.playerScore = score
+                self.storeLocalObjectID()
             }
         }
         else if (userName != playerUserName) {
             var query = PFQuery(className: "GameScore")
-            query.getObjectInBackgroundWithId(parseObjectID) {
-                [unowned self]
-                (gameScore: PFObject?, error: NSError?) -> Void in
-                if error != nil {
-                    println(error)
-                } else if let gameScore = gameScore {
-                    self.playerUserName = userName
-                    gameScore["playerName"] = self.playerUserName
-                    gameScore.save()
-                    self.playerScore = score
-                    self.storeLocalObjectID()
-                }
+            if let gameScore = query.getObjectWithId(parseObjectID) {
+                self.playerUserName = userName
+                gameScore["playerName"] = self.playerUserName
+                gameScore.save()
+                self.playerScore = score
+                self.storeLocalObjectID()
             }
         }
     }
