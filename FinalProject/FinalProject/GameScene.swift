@@ -191,6 +191,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func initObstacles() {
+        var timeDifficulty = 1.3
+        
         let addObstacle = SKAction.sequence([
             SKAction.runBlock {
                 var randInt: Int = Int(arc4random_uniform(11)) + 1
@@ -199,7 +201,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             SKAction.waitForDuration(1.3, withRange: 0.5)
             ])
         
-        let addObstacles = SKAction.repeatActionForever(addObstacle)
+        let addObstacles = SKAction.repeatAction(addObstacle, count: 50)
+        
+        let createProgressiveDifficulty = SKAction.sequence([
+            addObstacles
+            ])
         
         runAction(addObstacles)
     }
