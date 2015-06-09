@@ -191,8 +191,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
             }
             ])
+
         
-        runAction(createProgressiveDifficulty)
+        runAction(SKAction.repeatActionForever(createProgressiveDifficulty))
     }
     
     func addObstacle(fileName: String) {
@@ -300,7 +301,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if (accelDir * prevMovement < 0) {
                     player.physicsBody!.velocity.dx = 0.0
                 }
-                player.physicsBody!.applyForce(CGVectorMake(40.0 * CGFloat(accelDir), 0))
+                player.physicsBody!.applyForce(CGVectorMake(55.0 * CGFloat(accelDir), 0))
                 
                 prevMovement = accelDir
             }
