@@ -157,7 +157,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.physicsBody?.collisionBitMask = FSBoundaryCategory | FSObstacleCategory
         player.physicsBody?.affectedByGravity = false;
         player.physicsBody?.allowsRotation = false;
-        player.physicsBody?.restitution = 0.9
+        player.physicsBody?.restitution = 0.4
         player.physicsBody?.dynamic = true
         player.physicsBody?.mass = 0.02
         player.zPosition = 4
@@ -172,11 +172,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func initObstacles() {
         var timeDifficulty = 1.3
+        var carSpeedLow : CGFloat = -375.0
+        var carSpeedHigh : CGFloat = -150.0
         
         let addObstacle = SKAction.sequence([
             SKAction.runBlock {
                 var randInt: Int = Int(arc4random_uniform(11)) + 1
-                self.addObstacle("obstacle" + String(randInt))
+                self.addObstacle("obstacle" + String(randInt), lowerSpeedBound: carSpeedLow, upperSpeedBound: carSpeedHigh)
             },
             SKAction.waitForDuration(timeDifficulty, withRange: 0.2)
             ])
@@ -188,6 +190,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             SKAction.runBlock {
                 if timeDifficulty > 0.3 {
                     timeDifficulty -= -0.1
+                    carSpeedLow -= 5.0
+                    carSpeedHigh -= 5.0
+                }
+                else {
+                    carSpeedLow -= 25.0
+                    carSpeedHigh -= 25.0
                 }
             }
             ])
@@ -196,7 +204,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         runAction(SKAction.repeatActionForever(createProgressiveDifficulty))
     }
     
-    func addObstacle(fileName: String) {
+    func addObstacle(fileName: String, lowerSpeedBound: CGFloat, upperSpeedBound: CGFloat) {
         let obstacle = SKSpriteNode(imageNamed: fileName)
         obstacle.position = CGPoint(x: skRand(lowerBound: self.size.width / 12.0, upperBound: self.size.width - (self.size.width / 12.0)), y: self.size.height + obstacle.size.height)
         obstacle.name = "obstacle"
@@ -204,7 +212,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: obstacle.size.width / 2.0, height: obstacle.size.height))
         physicsBody.affectedByGravity = false
-        physicsBody.velocity = CGVector(dx: 0.0, dy: skRand(lowerBound: -375.0, upperBound: -100.0))
+        physicsBody.velocity = CGVector(dx: 0.0, dy: skRand(lowerBound: lowerSpeedBound, upperBound: upperSpeedBound))
         physicsBody.categoryBitMask = FSObstacleCategory
         physicsBody.contactTestBitMask = FSPlayerCategory | FSBoundaryCategory | FSObstacleCategory
         physicsBody.collisionBitMask = FSPlayerCategory | FSBoundaryCategory | FSObstacleCategory
