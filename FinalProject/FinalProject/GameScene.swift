@@ -21,7 +21,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     /*Background*/
     var background: SKNode!
-    let background_speed = 400.0
+    let background_speed = 600.0
     
     /*Time Values*/
     var delta = NSTimeInterval(0)
@@ -176,17 +176,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var carSpeedLow : CGFloat = -375.0
         var carSpeedHigh : CGFloat = -150.0
         
-        let addObstacle = SKAction.sequence([
+        var addObstacle = SKAction.sequence([
             SKAction.runBlock {
-                var randInt: Int = Int(arc4random_uniform(11)) + 1
+                var randInt: Int = Int(arc4random_uniform(15)) + 1
                 self.addObstacle("obstacle" + String(randInt), lowerSpeedBound: carSpeedLow, upperSpeedBound: carSpeedHigh)
             },
             SKAction.waitForDuration(timeDifficulty, withRange: 0.2)
             ])
         
-        let addObstacles = SKAction.repeatAction(addObstacle, count: 5)
+        var addObstacles = SKAction.repeatAction(addObstacle, count: 5)
         
-        let createProgressiveDifficulty = SKAction.sequence([
+        var createProgressiveDifficulty = SKAction.sequence([
             addObstacles,
             SKAction.runBlock {
                 if timeDifficulty > 0.3 {
