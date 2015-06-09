@@ -188,7 +188,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             addObstacles,
             SKAction.runBlock {
                 if timeDifficulty > 0.3 {
-                    timeDifficulty -= -0.1
+                    timeDifficulty -= 0.1
                     carSpeedLow -= 5.0
                     carSpeedHigh -= 5.0
                 }
@@ -196,6 +196,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     carSpeedLow -= 25.0
                     carSpeedHigh -= 25.0
                 }
+                
+                println("time difficulty is now: \(timeDifficulty)")
+                println("speed difficulty is now: \(carSpeedHigh) and \(carSpeedLow)")
             }
             ])
 
@@ -264,23 +267,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if(collision == (FSObstacleCategory | FSBoundaryCategory)) {
             if contact.bodyA.node?.name == "obstacle" {
                 contact.bodyA.node?.removeFromParent()
-                println("obstacle removed")
+//                println("obstacle removed")
             }
             if contact.bodyB.node?.name == "obstacle" {
                 contact.bodyB.node?.removeFromParent()
-                println("obstacle removed")
+//                println("obstacle removed")
             }
         }
         
         if(collision == (FSPlayerCategory | FSObstacleCategory)) {
-            println("collision between player and obstacle")
             if contact.bodyA.node?.name == "player" {
                 contact.bodyA.velocity = CGVector(dx: 0.0, dy: -300.0)
-                println("Player speed reduced")
             }
             if contact.bodyB.node?.name == "player" {
                 contact.bodyB.velocity = CGVector(dx: 0.0, dy: -300.0)
-                println("Player speed reduced")
             }
             
             gameOver()
@@ -288,7 +288,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if(collision == FSObstacleCategory) {
-            println("collision between two obstacles")
             contact.bodyA.velocity = CGVector(dx: 0.0, dy: -background_speed)
             contact.bodyB.velocity = CGVector(dx: 0.0, dy: -background_speed)
         }
@@ -296,7 +295,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if(collision == (FSScoreCategory | FSObstacleCategory)) {
             score++
             scoreLabel.text = "Score: \(score)"
-            println("current score is: " + String(score))
         }
     }
     
@@ -308,7 +306,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if (accelDir * prevMovement < 0) {
                     player.physicsBody!.velocity.dx = 0.0
                 }
-                player.physicsBody!.applyForce(CGVectorMake(55.0 * CGFloat(accelDir), 0))
+                player.physicsBody!.applyForce(CGVectorMake(65.0 * CGFloat(accelDir), 0))
                 
                 prevMovement = accelDir
             }
