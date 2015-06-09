@@ -54,7 +54,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         initDisplay()
         initBackground()
         initWorld()
-//        initObstacles()
         initCountdown()
     }
     
@@ -224,26 +223,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func initDisplay() {
         self.size = self.view!.frame.size
-//        let demo = SKLabelNode(fontNamed:"AppleSDGothicNeo-Regular")
-//        demo.text = "Accelerometer Demo";
-//        demo.fontSize = 30;
-//        demo.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame) + 225)
-//        demo.zPosition = 3
-//        self.addChild(demo)
-//        
-//        let button = SKShapeNode(rectOfSize: CGSize(width: 150.0, height: 40.0))
-//        button.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame) + 150)
-//        button.fillColor = UIColor.grayColor()
-//        button.name = "swapSceneButton"
-//        button.zPosition = 3
-//        
-//        let buttonLabel = SKLabelNode(fontNamed: "AppleSDGothicNeo-Regular")
-//        buttonLabel.text = "ParseDemo"
-//        buttonLabel.fontSize = 20;
-//        buttonLabel.color = UIColor.greenColor()
-//        buttonLabel.zPosition - 3
-//        button.addChild(buttonLabel)
-//        self.addChild(button)
         
         scoreLabel = SKLabelNode(fontNamed:"AppleSDGothicNeo-Regular")
         scoreLabel.text = "Score: \(score)"
@@ -277,17 +256,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         /* Called when a touch begins */
-//        for touch: AnyObject in touches {
-//            let location = (touch as! UITouch).locationInNode(self)
-//            if let theName = self.nodeAtPoint(location).name {
-//                if theName == "swapSceneButton" {
-//                    self.removeAllChildren()
-//                    if (!swapScene!(score)) {
-//                        initializeScene()
-//                    }
-//                }
-//            }
-//        }
         
     }
     
