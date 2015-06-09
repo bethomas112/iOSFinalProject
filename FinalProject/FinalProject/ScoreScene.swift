@@ -31,6 +31,7 @@ class ScoreScene: SKScene {
     var nameLabel = SKLabelNode(fontNamed: "AppleSDGothicNeo-Regular")
     var rankLabel = SKLabelNode(fontNamed: "AppleSDGothicNeo-Regular")
     var playerRankLabel = SKLabelNode(fontNamed: "AppleSDGothicNeo-Regular")
+    var highScoreLabel = SKLabelNode(fontNamed: "AppleSDGothicNeo-Regular")
     
     override func didMoveToView(view: SKView) {
         if (!initialized) {
@@ -72,7 +73,10 @@ class ScoreScene: SKScene {
         //playerRankLabel.removeFromParent()
         
         self.addChild(scoreLabel)
+        self.addChild(highScoreLabel)
+        
         scoreLabel.text = "Your Score: \(playerScore)"
+        highScoreLabel.text = "Your High Score: \(scoreManager!.playerScore)"
         
         self.view?.addSubview(playerNameField!)
         textFieldExists = true
@@ -139,7 +143,11 @@ class ScoreScene: SKScene {
     func initLabels() {
         scoreLabel.text = "Your Score: \(playerScore)"
         scoreLabel.fontSize = 45
-        scoreLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame) + 215)
+        scoreLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame) + 225)
+        
+        highScoreLabel.text = "Your High Score: \(scoreManager!.playerScore)"
+        highScoreLabel.fontSize = 32
+        highScoreLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame) + 180)
         
         nameLabel.text = "Enter your name"
         nameLabel.fontSize = 25
@@ -147,13 +155,14 @@ class ScoreScene: SKScene {
         
         rankLabel.text = "Your Top Rank:"
         rankLabel.fontSize = 35
-        rankLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame) + 140)
+        rankLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame) + 135)
         
         playerRankLabel.text = "4 out of 10"
         playerRankLabel.fontSize = 30
         playerRankLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame) + 80)
         
         self.addChild(scoreLabel)
+        self.addChild(highScoreLabel)
         self.addChild(nameLabel)
     }
     

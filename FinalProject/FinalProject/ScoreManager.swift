@@ -9,7 +9,7 @@
 import Parse
 
 class ScoreManager {
-    private var playerScore : Int = 0
+    var playerScore : Int = 0
     private var def = NSUserDefaults.standardUserDefaults()
     private var parseObjectID : String = ""
     var playerUserName : String = ""
